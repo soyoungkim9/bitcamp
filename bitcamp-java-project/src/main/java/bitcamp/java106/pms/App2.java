@@ -16,9 +16,9 @@ public class App2 {
 
             System.out.print("팀명? ");
             arr[i].name = scanner.next();
+            scanner.nextLine();
             System.out.print("설명? ");
             arr[i].ex = scanner.nextLine();
-            scanner.nextLine();
             System.out.print("최대인원? ");
             arr[i].num = scanner.nextInt();
             System.out.print("시작일? ");
