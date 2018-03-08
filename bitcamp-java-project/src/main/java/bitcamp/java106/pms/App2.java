@@ -6,12 +6,13 @@ public class App2 {
     public static void main (String[] args) {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
 
-        char answer = ' ';
+        String answer;
         int repeatNum = 0; // 반복수
         Team[] arr = new Team[5];
 
 
         for(int i = 0; i < arr.length; i++) {
+            repeatNum += 1;
             arr[i] = new Team();
 
             System.out.print("팀명? ");
@@ -25,12 +26,13 @@ public class App2 {
             arr[i].startDate = scanner.next();
             System.out.print("종료일? ");
             arr[i].endDate = scanner.next();
-
-            System.out.print("입력하시겠습니까?(Y/n)");
-            answer = scanner.next().charAt(0);
-            repeatNum += 1;
-            if(answer == 'Y') continue;
-            else if(answer == 'n') break;
+            scanner.nextLine();
+            if(repeatNum == arr.length) break;
+            System.out.printf("입력하시겠습니까?(Y/n)");
+            answer = scanner.nextLine();
+  
+            if(answer.toLowerCase().equals("Y")) continue;
+            else if(answer.toLowerCase().equals("n")) break;
         }
 
         System.out.println("-----------------------");
