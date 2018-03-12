@@ -16,21 +16,21 @@ public class Exam04_6 {
         // => 실행 결과
         //    c cpp java html css 
 
-        if ((lang & 0b1000_0000) == 0b1000_0000) System.out.print("c "); // 1
+        if ((lang & 0x80) > 0) System.out.print("c "); // 1
         
-        if ((lang & 0b0100_0000) == 0b0100_0000) System.out.print("cpp "); // 1
+        if ((lang & 0x40) > 0) System.out.print("cpp "); // 1
         
-        if ((lang & 0b0010_0000) == 0b0010_0000) System.out.print("java "); // 1
+        if ((lang & 0x20) > 0) System.out.print("java "); // 1
         
-        if ((lang & 0b0001_0000) == 0b0001_0000) System.out.print("js ");
+        if ((lang & 0x10) > 0) System.out.print("js ");
         
-        if ((lang & 0b0000_1000) == 0b0100_1000) System.out.print("python ");
+        if ((lang & 0x08) > 0) System.out.print("python ");
         
-        if ((lang & 0b0000_0001) == 0b0000_0001) System.out.print("php ");
+        if ((lang & 0x04) > 0) System.out.print("php ");
         
-        if ((lang & 0b0000_0010) == 0b0000_0010) System.out.print("html "); // 1
+        if ((lang & 0x02) > 0) System.out.print("html "); // 1
         
-        if ((lang & 0b0000_0001) == 0b0000_0001) System.out.print("css "); // 1
+        if ((lang & 0x01) > 0) System.out.print("css "); // 1
 
 
 
