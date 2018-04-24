@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Exam02_list {
+public class member_list {
 
     public static void main(String[] args) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -15,15 +15,15 @@ public class Exam02_list {
         // 당장 select 할 때 파라미터 값을 넣지 않는다 하더라도,
         // 나중에 넣을 것을 대비해서 그냥 PreparedStatement를 사용하라!
         PreparedStatement stmt = con.prepareStatement(
-                "select bno,titl,cdt from ex_board");
+                "select id,email,psd from ex_member");
         
         // SQL을 실행할 때는 파라미터로 SQL문을 넘겨주지 않는다.
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            System.out.printf("%d,%s,%s\n", 
-                rs.getInt("bno"),  
-                rs.getString("titl"),
-                rs.getDate("cdt")); 
+            System.out.printf("%s,%s,%s\n", 
+                rs.getString("id"),  
+                rs.getString("email"),
+                rs.getString("psd")); 
         }
        
         rs.close();

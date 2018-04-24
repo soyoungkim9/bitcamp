@@ -24,7 +24,7 @@ public class Exam02_update {
                 "java106", "1111");
         
         PreparedStatement stmt = con.prepareStatement(
-            "update ex_board set titl=?, cont=?, rdt=now() where bno=?");
+            "update ex_board set titl=?, cont=?, cdt=now() where bno=?");
         stmt.setString(1, title);
         stmt.setString(2, content);
         stmt.setString(3, no);

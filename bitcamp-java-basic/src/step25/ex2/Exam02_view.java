@@ -19,7 +19,7 @@ public class Exam02_view {
                 "java106", "1111");
 
         PreparedStatement stmt = con.prepareStatement(
-            "select bno,titl,cont,rdt from ex_board where bno=?");
+            "select bno,titl,cont,cdt from ex_board where bno=?");
         stmt.setString(1, no);
         ResultSet rs = stmt.executeQuery();
         
@@ -27,7 +27,7 @@ public class Exam02_view {
             System.out.printf("번호: %d\n", rs.getInt("bno"));
             System.out.printf("제목: %s\n", rs.getString("titl"));
             System.out.printf("내용: %s\n", rs.getString("cont"));
-            System.out.printf("등록일: %s\n", rs.getDate("rdt")); 
+            System.out.printf("등록일: %s\n", rs.getDate("cdt")); 
         } else {
             System.out.println("해당 번호의 게시물이 없습니다!");
         }
