@@ -8,22 +8,14 @@
            또는 SQL을 사용할 인터페이스나 클래스 경로를 지정한다.
            물론 어떤 이름으로 지정해도 상관없지만, 가능한 위의 규칙을 준수하라
            유지보수의 일관성을 유지하라! 나중에 스프링 적용할 때 자동화 시킬 수 있음-->
-<mapper namespace="ste25.ex5.BoardDao">
-
-<!-- SQL문은 태그 안에 작성한다.
-     <select>태그에는 select문장을,
-     <insert>태그에는 insert문장을,
-     <update>태그에는 update문장을,
-     <delete>태그에는 delete문장을 작성한다.
-            그런데 사실상 아무 태그를 사용해도 된다.
-            어차피 SQL문을 찾을 떄 id 속성 값으로 찾기 때문이다.
-            그럼에도 불구하고 유지보수의 일관성을 위해
-     SQL문의 따라 적절한 태그를 사용하라! -->
-  
-  <!-- select태그
-        id: SQL문을 찾을 때 사용할 식별자이다.
-        resultType : 결과를 저장할 클래스이다. 반드시 fully-qualified name 을 사용하라! -->
+<mapper namespace="BoardMapper">
+   
   <select id="selectBoard" resultType="step25.ex5.Board">
-
+  select 
+    bno as no,
+    titl as title,
+    cont as content,
+    cdt as registeredDate
+    from ex_board
   </select>
 </mapper>
