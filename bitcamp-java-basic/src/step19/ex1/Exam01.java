@@ -7,8 +7,8 @@ import java.io.File;
 public class Exam01 {
 
     public static void main(String[] args) {
-        // 1) 패키지 경로 준비
-        File packageDir = new File("/Users/eomjinyoung/git/java106/java106-java-basic/bin/main/step19/ex1");
+        // 1) 패키지 경로 준비 
+        File packageDir = new File("\\Users\\Bit\\git\\bitcamp\\bitcamp-java-basic\\src\\step19/ex1");
 
         // 2) 해당 디렉토리에서 파일 목록을 가져오기
         File[] files = packageDir.listFiles();

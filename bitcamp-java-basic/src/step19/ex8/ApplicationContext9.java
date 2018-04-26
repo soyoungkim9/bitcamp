@@ -6,6 +6,7 @@ import java.io.FileFilter;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class ApplicationContext9 {
 
@@ -129,10 +130,6 @@ public class ApplicationContext9 {
     
     public Object getBean(String name) {
         return objPool.get(name);
-    }
-    
-    public void print() {
-        
     }
 }
 

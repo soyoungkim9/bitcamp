@@ -1,4 +1,4 @@
-// IoC 컨테이너 만들기 - 5) 클래스 이름으로 Class 객체 만들기
+// IoC 컨테이너 만들기 - 5) 클래스 이름으로 Class 객체를 만든다.
 package step19.ex5;
 
 import java.io.File;
@@ -10,7 +10,7 @@ public class Exam08 {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext6 appContext = new ApplicationContext6("step19.ex1");
-        List<Class> classes = appContext.getFiles();
+        List<Class> classes = appContext.getClasses();
         for (Class clazz : classes) {
             System.out.println(clazz.getName());
         }

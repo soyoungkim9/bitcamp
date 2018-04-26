@@ -1,4 +1,4 @@
-// @Component 애노테이션이 붙은 클래스만 객체를 붙인다.
+// @Component 애노테이션이 붙은 클래스만 객체를 생성한다.
 package step19.ex9;
 
 import java.io.File;
@@ -6,6 +6,7 @@ import java.io.FileFilter;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class ApplicationContext10 {
 
@@ -57,13 +58,14 @@ public class ApplicationContext10 {
     private String getComponentName(Class clazz) throws Exception {
         Component anno = (Component) clazz.getAnnotation(Component.class);
         String label = anno.value();
-        if(label.length() == 0)
+        if (label.length() == 0)
             return clazz.getName();
         return label;
     }
+    
     private Object createObject(Class clazz) throws Exception {
         
-        if(!isComponent(clazz))
+        if (!isComponent(clazz))
             return null;
         
         try {
@@ -82,12 +84,13 @@ public class ApplicationContext10 {
     }
     
     private boolean isComponent(Class clazz) throws Exception {
-        // 애노테이션 타입을 지정하여 해당 클래스에서 그 애노테이션 정보를 추출한다.
-        Component anno = (Component)clazz.getAnnotation(Component.class);
+        // 애노테이션의 타입을 지정하여 해당 클래스에서 @Component 애노테이션 정보를 추출한다.
+        Component anno = (Component) clazz.getAnnotation(Component.class);
         if (anno == null)
             return false;
         return true;
     }
+    
     private Object callConstructor(Constructor constructor) throws Exception {
         if (containsDefaultType(constructor))
             return null;
@@ -147,10 +150,6 @@ public class ApplicationContext10 {
     
     public Object getBean(String name) {
         return objPool.get(name);
-    }
-    
-    public void print() {
-        
     }
 }
 
