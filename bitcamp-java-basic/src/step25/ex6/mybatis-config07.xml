@@ -22,7 +22,7 @@
   </environments>
   
   <mappers>
-    <mapper resource="step25/ex6/BoardMapper02.xml"/>
+    <mapper resource="step25/ex6/BoardMapper07.xml"/>
   </mappers>
 </configuration>
 
