@@ -26,26 +26,31 @@ public class Board implements Serializable {
                 + "]";
     }
     
-    // 셋터와 겟터 생성
+    // 셋터와 겟터 생성 => 프로퍼티명 : no
     public int getNo() {
         return no;
     }
     public void setNo(int no) {
         this.no = no;
     }
+    
+    // 프로퍼티명 : title
     public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
         this.title = title;
     }
-    // 프로퍼티명
+    
+    // 프로퍼티명 : content
     public String getContent() {
         return content;
     }
     public void setContent(String content) {
         this.content = content;
     }
+    
+    // 프로퍼티명 : registeredDate
     public Date getRegisteredDate() {
         return registeredDate;
     }
