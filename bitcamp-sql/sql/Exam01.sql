@@ -40,6 +40,7 @@ DB 객체(테이블, 뷰, 함수, 트리거 등)를 생성, 변경, 삭제하는
     aver float not null
   );
 
+
 테이블 정보 보기
 > describe 테이블명;
 > desc 테이블명;
