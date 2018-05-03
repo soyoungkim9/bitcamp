@@ -8,7 +8,7 @@ public class Exam01 {
     static String filename = "message";
     static String country= "enUS";
     static Properties label;
-    
+     
     static void init() throws Exception {
         String value = System.getProperty("country");
         System.out.println(value);
