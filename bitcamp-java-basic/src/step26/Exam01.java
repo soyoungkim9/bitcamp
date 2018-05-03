@@ -6,18 +6,22 @@ import java.util.Properties;
 
 public class Exam01 {
     static String filename = "message";
-    static String country= "enUS";
+    static String userCountry = "US";
+    static String userLanguage = "en";
     static Properties label;
      
     static void init() throws Exception {
-        String value = System.getProperty("country");
-        if (value != null) {
-            country = value;
-        }
+        if(System.getProperty("user.country") != null)
+            userCountry = System.getProperty("user.country");
+        if(System.getProperty("user.language") != null)
+            userLanguage = System.getProperty("user.language");
         
         label = new Properties();
         label.load(new FileReader(
-                String.format("%s-%s.properties", filename, country)));
+                String.format("%s-%s%s.properties",
+                        filename,
+                        userLanguage,
+                        userCountry)));
     }
     
     public static void main(String[] args) throws Exception {
@@ -28,6 +32,11 @@ public class Exam01 {
         // 즉 다국어를 제공할 수 있도록 개발된 프로그램을
         // "국제화(i18n;Internationalization)"라고 얘기한다.
         System.out.println(label.get("welcome"));
+        
+        // 지역화(localization)
+        // => 국제화를 지원하는 프로그램의 경우 메뉴명, 라벨명, 버튼명 등
+        //    화면에서 출력하는 텍스트를 별도의 프로퍼티 파일에 저장한다.
+        // => 이 프로퍼티 파일에 저장된 데이터를 각각의 언어로 바꾸는 것을 지역화라 한다.
     }
 
 }
