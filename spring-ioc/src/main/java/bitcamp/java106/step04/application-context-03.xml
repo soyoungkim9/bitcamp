@@ -12,23 +12,36 @@
     	<property name="maker" value="비트자동차"/>
     	<property name="engine" ref="e1"/>
     	<property name="cc" value="890"/>
-    	<!-- 의존객체 설정하기 -->
+    	<property name="engine">
+	    <bean class="bitcamp.java106.step04.Engine">
+	    	<property name="maker" value="비트자동차"/>
+			<property name="valve" value="16"/>
+			<property name="cylinder" value="8"/>    	
+	    </bean>
+    	</property>
     </bean>
-
-    <bean id="e1" class="bitcamp.java106.step04.Engine">
+    <!-- 위의 설정을 자바 코드로 표현:
+    	Car c1 = new Car();
+    	c1.setModel("티코");
+    	c1.setMaker("비트자동차");
+    	c1.setCc(Integer.parseInt("890");
+    	 
+    	objPool.pull("c1", c1);
+     -->
+     
+         <bean id="c2" class="bitcamp.java106.step04.Car">
+    	<property name="model" value="티코A"/>
     	<property name="maker" value="비트자동차"/>
-		<property name="valve" value="16"/>
-		<property name="cylinder" value="8"/>    	
+    	<property name="engine" ref="e1"/>
+    	<property name="cc" value="890"/>
+    	<property name="engine">
+	    <bean class="bitcamp.java106.step04.Engine">
+	    	<property name="maker" value="비트자동차"/>
+			<property name="valve" value="16"/>
+			<property name="cylinder" value="8"/>    	
+	    </bean>
+    	</property>
     </bean>
 
-    <bean id="e2" class="bitcamp.java106.step04.Engine">
-    	<property name="maker" value="캠프자동차"/>
-		<property name="valve" value="8"/>
-		<property name="cylinder" value="4"/>    	
-    </bean>
-        
-
-    <bean id="c2" class="bitcamp.java106.step04.Car"
-    	p:model="티코" p:maker="비트자동차" p:cc="890" p:engine-ref="e2"/>
      
 </beans>

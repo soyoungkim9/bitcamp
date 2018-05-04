@@ -1,22 +1,16 @@
-package bitcamp.java106.step05;
+package bitcamp.java106.step06;
 
-import java.util.Properties;
+import java.util.Arrays;
 
-public class Car4 {
+public class Car {
     String model;
     String maker;
     int cc;
-    Properties options;
+    
 
     @Override
     public String toString() {
-        return "Car4 [model=" + model + ", maker=" + maker + ", cc=" + cc + ", options=" + options + "]";
-    }
-    public Properties getOptions() {
-        return options;
-    }
-    public void setOptions(Properties options) {
-        this.options = options;
+        return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
     }
     public String getModel() {
         return model;
@@ -36,5 +30,7 @@ public class Car4 {
     public void setCc(int cc) {
         this.cc = cc;
     }
+    
+    
     
 }

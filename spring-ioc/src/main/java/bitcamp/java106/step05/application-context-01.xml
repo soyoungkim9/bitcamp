@@ -5,8 +5,9 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
     
-    <!-- 컬렉션 타입의 프로퍼티 값 설정하기 -->
-    <bean id="c1" class="bitcamp.java106.step05.Car">
+    <!-- List 프로퍼티 값 설정하기 -->
+    <bean id="c1" class="bitcamp.java106.step05.Car2">
+        <!-- List 프로퍼티 값 설정하기 : 배열과 똑같이 설정하기 -->
         <property name="tires">
 			<array>
 				<bean class="bitcamp.java106.step05.Tire" 
@@ -23,9 +24,10 @@
         </property>
     </bean>
     
-        <bean id="c2" class="bitcamp.java106.step05.Car">
+        <bean id="c2" class="bitcamp.java106.step05.Car2">
+        <!-- List 프로퍼티 값 설정하기 : 배열과 똑같다. -->
         <property name="tires">
-			<list>
+			<array>
 				<bean class="bitcamp.java106.step05.Tire" 
 					p:maker="금호타이어" p:width="180"/>
 				<bean class="bitcamp.java106.step05.Tire" 
@@ -36,7 +38,7 @@
 					p:maker="한국타이어" p:width="180"/>
 				<bean class="bitcamp.java106.step05.Tire" 
 					p:maker="비트타이어" p:width="100"/>
-			</list>        
+			</array>        
         </property>
     </bean>
           
