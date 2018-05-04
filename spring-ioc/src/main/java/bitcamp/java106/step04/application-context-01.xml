@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+	<!-- 프로퍼티 설정하기 = 셋터 호출하기 -->
+	<!-- 생성자의 파라미터 값을 주지 않으면 기본 생성자가 호출된다. -->
+    <bean id="c1" class="bitcamp.java106.step04.Car">
+    	<property name="model"><value type="java.lang.String">티코</value></property>
+    	<property name="maker"><value type="java.lang.String">비트자동차</value></property>
+    	<property name="cc"><value type="int">890</value></property>
+    </bean>
+    
+    
+    <bean id="c2" class="bitcamp.java106.step04.Car">
+    	<property name="model"><value>티코</value></property>
+    	<property name="maker"><value>비트자동차</value></property>
+    	<property name="cc"><value>890</value></property>
+    </bean>
+    
+    <!-- value 태그 대신에 property 태그의 value 속성으로 값을 지정하 ㄹ수 있다. -->
+    <bean id="c3" class="bitcamp.java106.step04.Car">
+    	<property name="model" value="티코"/>
+    	<property name="maker" value="비트자동차"/>
+    	<property name="cc" value="890"/>
+    </bean>
+
+    <bean id="c4" class="bitcamp.java106.step04.Car"
+    	p:model="티코" p:maker="비트자동차" p:cc="890" />
+     
+</beans>

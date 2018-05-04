@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+    <bean class="bitcamp.java106.step02.Car"/>
+    <bean class="bitcamp.java106.step02.Car"/>
+    <bean class="bitcamp.java106.step02.Car"/>
+    <bean class="bitcamp.java106.step02.Car"/>
+    
+    <!-- 인덱스 번호는 클래스마다 0부터 시작한다. -->
+    <bean class="bitcamp.java106.step02.Engine"/>
+    <bean class="bitcamp.java106.step02.Engine"/>
+    <bean class="bitcamp.java106.step02.Engine"/>
+    
+
+</beans>
