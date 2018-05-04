@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import bitcamp.java106.BeanUtils;
 
-public class Exam03 {
+public class Exam04 {
 
     public static void main(String[] args) {
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
