@@ -1,4 +1,4 @@
-// 스프링 IoC 컨테이너
+// 객체 생성 
 package bitcamp.java106.step02;
 
 import org.springframework.context.ApplicationContext;
@@ -11,8 +11,13 @@ public class Exam01 {
     public static void main(String[] args) {
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
                 "bitcamp/java106/step02/application-context-01.xml");
-        BeanUtils.printBeanList(iocContainer);
         
+        BeanUtils.printBeanList(iocContainer);
     }
 
 }
+
+
+
+
+

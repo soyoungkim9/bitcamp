@@ -14,9 +14,8 @@ public class Exam01 {
         
         System.out.println(iocContainer.getBean("c1"));
         System.out.println(iocContainer.getBean("c2"));
-
-    
     }
+
 }
 
 

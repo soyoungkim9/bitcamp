@@ -9,13 +9,23 @@ public class Car2 {
     Engine engine;
     List<Tire> tires;
     
-    
     @Override
     public String toString() {
         return "Car2 [model=" + model + ", maker=" + maker + ", cc=" + cc + ", engine=" + engine + ", tires=" + tires
                 + "]";
     }
-    
+    public List<Tire> getTires() {
+        return tires;
+    }
+    public void setTires(List<Tire> tires) {
+        this.tires = tires;
+    }
+    public Engine getEngine() {
+        return engine;
+    }
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
     public String getModel() {
         return model;
     }
@@ -34,21 +44,6 @@ public class Car2 {
     public void setCc(int cc) {
         this.cc = cc;
     }
-    public Engine getEngine() {
-        return engine;
-    }
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-    public List<Tire> getTires() {
-        return tires;
-    }
-    public void setTires(List<Tire> tires) {
-        this.tires = tires;
-    }
-    
-    
-    
     
     
 }

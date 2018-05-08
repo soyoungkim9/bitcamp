@@ -1,4 +1,4 @@
-// 객체 생성 정책 - singleton, prototype
+// 익명 객체
 package bitcamp.java106.step02;
 
 import org.springframework.context.ApplicationContext;
@@ -11,6 +11,7 @@ public class Exam04 {
     public static void main(String[] args) {
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
                 "bitcamp/java106/step02/application-context-04.xml");
+        
         BeanUtils.printBeanNames(iocContainer);
         
         BeanUtils.printBeanAliases(iocContainer, "bitcamp.java106.step02.Car#0");
@@ -20,6 +21,13 @@ public class Exam04 {
         
         BeanUtils.printBeanAliases(iocContainer, "bitcamp.java106.step02.Engine#0");
         BeanUtils.printBeanAliases(iocContainer, "bitcamp.java106.step02.Engine#1");
+        BeanUtils.printBeanAliases(iocContainer, "bitcamp.java106.step02.Engine#2");
         
     }
+
 }
+
+
+
+
+

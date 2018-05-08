@@ -9,7 +9,6 @@ public class Engine {
     public String toString() {
         return "Engine [maker=" + maker + ", valve=" + valve + ", cylinder=" + cylinder + "]";
     }
-    
     public String getMaker() {
         return maker;
     }

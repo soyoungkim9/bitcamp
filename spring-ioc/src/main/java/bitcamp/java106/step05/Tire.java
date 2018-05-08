@@ -4,14 +4,12 @@ public class Tire {
     String maker;
     int width;
     int ratio;
-    int whell;
-    
+    int wheel;
     
     @Override
     public String toString() {
-        return "Tire [maker=" + maker + ", width=" + width + ", ratio=" + ratio + ", whell=" + whell + "]";
+        return "Tire [maker=" + maker + ", width=" + width + ", ratio=" + ratio + ", wheel=" + wheel + "]";
     }
-    
     public String getMaker() {
         return maker;
     }
@@ -30,11 +28,11 @@ public class Tire {
     public void setRatio(int ratio) {
         this.ratio = ratio;
     }
-    public int getWhell() {
-        return whell;
+    public int getWheel() {
+        return wheel;
     }
-    public void setWhell(int whell) {
-        this.whell = whell;
+    public void setWheel(int wheel) {
+        this.wheel = wheel;
     }
     
     

@@ -4,6 +4,12 @@ public class Car {
     String model;
     String maker;
     int cc;
+    
+    @Override
+    public String toString() {
+        return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
+    }
+    
     public String getModel() {
         return model;
     }
@@ -21,11 +27,6 @@ public class Car {
     }
     public void setCc(int cc) {
         this.cc = cc;
-    }
-    
-    @Override
-    public String toString() {
-        return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
     }
     
     

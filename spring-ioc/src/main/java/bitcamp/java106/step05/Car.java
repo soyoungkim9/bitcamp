@@ -14,25 +14,18 @@ public class Car {
         return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + ", engine=" + engine + ", tires="
                 + Arrays.toString(tires) + "]";
     }
-
     public Tire[] getTires() {
         return tires;
     }
-
-
     public void setTires(Tire[] tires) {
         this.tires = tires;
     }
-
-
     public Engine getEngine() {
         return engine;
     }
-
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
-
     public String getModel() {
         return model;
     }
@@ -51,7 +44,6 @@ public class Car {
     public void setCc(int cc) {
         this.cc = cc;
     }
-    
     
     
 }

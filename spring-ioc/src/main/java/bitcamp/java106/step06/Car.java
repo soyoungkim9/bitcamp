@@ -1,13 +1,10 @@
 package bitcamp.java106.step06;
 
-import java.util.Arrays;
-
 public class Car {
     String model;
     String maker;
     int cc;
     
-
     @Override
     public String toString() {
         return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
@@ -30,7 +27,6 @@ public class Car {
     public void setCc(int cc) {
         this.cc = cc;
     }
-    
     
     
 }

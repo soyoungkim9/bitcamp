@@ -8,6 +8,12 @@ public class Car {
     public Car() {
         System.out.println("Car() 생성자 호출됨!");
     }
+    
+    @Override
+    public String toString() {
+        return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
+    }
+    
     public String getModel() {
         return model;
     }
@@ -28,11 +34,6 @@ public class Car {
     public void setCc(int cc) {
         System.out.println("setCc() 호출됨!");
         this.cc = cc;
-    }
-    
-    @Override
-    public String toString() {
-        return "Car [model=" + model + ", maker=" + maker + ", cc=" + cc + "]";
     }
     
     

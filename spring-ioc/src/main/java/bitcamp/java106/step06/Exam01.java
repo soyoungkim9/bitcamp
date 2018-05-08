@@ -1,4 +1,4 @@
-// 생성자 호출
+// 팩토리 메서드 호출 - static 메서드 호출
 package bitcamp.java106.step06;
 
 import org.springframework.context.ApplicationContext;
@@ -11,7 +11,6 @@ public class Exam01 {
     public static void main(String[] args) {
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
                 "bitcamp/java106/step06/application-context-01.xml");
-        BeanUtils.printBeanNames(iocContainer);
         
         System.out.println(iocContainer.getBean("c1"));
         System.out.println(iocContainer.getBean("c2"));
@@ -19,3 +18,8 @@ public class Exam01 {
     }
 
 }
+
+
+
+
+

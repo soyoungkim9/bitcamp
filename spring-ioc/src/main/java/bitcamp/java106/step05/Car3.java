@@ -1,6 +1,5 @@
 package bitcamp.java106.step05;
 
-import java.util.List;
 import java.util.Map;
 
 public class Car3 {
@@ -8,7 +7,6 @@ public class Car3 {
     String maker;
     int cc;
     Map<String,Object> options;
-    
     
     @Override
     public String toString() {
@@ -38,10 +36,6 @@ public class Car3 {
     public void setCc(int cc) {
         this.cc = cc;
     }
-
-    
-    
-    
     
     
 }
