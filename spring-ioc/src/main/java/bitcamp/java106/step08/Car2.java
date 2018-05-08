@@ -1,8 +1,11 @@
-package bitcamp.java106.step07;
+package bitcamp.java106.step08;
 
 import java.sql.Date;
 
-public class Car {
+import org.springframework.beans.factory.annotation.Autowired;
+
+// 의존 객체 Engine 주입 - 셋터 메서드에 @Autowired로 표시하라!
+public class Car2 {
     String model;
     String maker;
     int cc;
@@ -10,8 +13,8 @@ public class Car {
     Date createdDate;
     Engine engine;
     
-    public Car() {
-        System.out.println("Car()");
+    public Car2() {
+        System.out.println("Car2()");
     }
     
     @Override
@@ -23,7 +26,8 @@ public class Car {
     public Engine getEngine() {
         return engine;
     }
-
+    
+    @Autowired
     public void setEngine(Engine engine) {
         System.out.println("Car.setEngine()");
         this.engine = engine;
@@ -33,21 +37,18 @@ public class Car {
         return auto;
     }
     public void setAuto(boolean auto) {
-        System.out.println("Car.setAuto()");
         this.auto = auto;
     }
     public Date getCreatedDate() {
         return createdDate;
     }
     public void setCreatedDate(Date createdDate) {
-        System.out.println("Car.setCreatedDate()");
         this.createdDate = createdDate;
     }
     public String getModel() {
         return model;
     }
     public void setModel(String model) {
-        System.out.println("Car.setModel()");
 
         this.model = model;
     }
@@ -55,14 +56,12 @@ public class Car {
         return maker;
     }
     public void setMaker(String maker) {
-        System.out.println("Car.setMaker()");
         this.maker = maker;
     }
     public int getCc() {
         return cc;
     }
     public void setCc(int cc) {
-        System.out.println("Car.setCc()");
         this.cc = cc;
     }
     
