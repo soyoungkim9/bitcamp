@@ -10,7 +10,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HttpServlet extends GenericServlet {
+
+// 비록 HttpServlet 클래스는 추상 메서드가 없지만,
+// 이 클래스의 목적이 서브 클래스에서 공통 기능을 상속해주는 것이기 때문에
+// 바로 사용할 수 없도록 추상 클래스로 선언한다.
+public abstract class HttpServlet extends GenericServlet {
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         // 파라미터로 넘어오는 것은 실제로 HTTP 프로토콜을 다룰 수 있는 객체가 넘어온다.
@@ -18,7 +22,7 @@ public class HttpServlet extends GenericServlet {
         
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         HttpServletResponse httpResponse = (HttpServletResponse) res;
-    
+        this.service(httpRequest, httpResponse);
     }
     
     // 개발 편의를 위해 service 메서드를 추가한다. (오버로딩)
