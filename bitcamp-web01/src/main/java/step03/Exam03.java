@@ -1,4 +1,4 @@
-// 클라이언트가 보낸 데이터(요청 파라미터; request parameter)를 읽기
+// 클라이언트가 보낸 데이터(요청 파라미터;request parameter)를 읽기
 package step03;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class Exam03 extends GenericServlet {
 
     @Override
     public void service(
-            ServletRequest request,
+            ServletRequest request, 
             ServletResponse response) throws ServletException, IOException {
         
         // HTTP 요청과 관련된 도구는 ServletRequest에 들어있다.
@@ -25,10 +25,15 @@ public class Exam03 extends GenericServlet {
         String name = request.getParameter("name");
         int age = Integer.parseInt(request.getParameter("age"));
         
-        
         response.setContentType("text/plain; charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.printf("이름=%s\n", name);
         out.printf("나이=%d\n", age);
     }
 }
+
+
+
+
+
+
