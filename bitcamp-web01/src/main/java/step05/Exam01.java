@@ -29,7 +29,7 @@ public class Exam01 extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         
         String name = request.getParameter("name");
-        int age = Integer.parseInt(request.getParameter("age"));
+        String age = request.getParameter("age");
         String photo = request.getParameter("photo");
         
         // 출력할 때 UTF-16 ===> UTF-8로 제대로 바꾸기 위해
@@ -37,7 +37,25 @@ public class Exam01 extends HttpServlet {
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.printf("이름=%s\n", name);
-        out.printf("나이=%d\n", age);
+        out.printf("나이=%s\n", age);
         out.printf("사진=%s\n", photo);
+        
+        // 출력 결과를 보면 name, age, photo의 값이 null이다.
+        // 이유?
+        //  - multipart/form-data 형식으로 전송된 데이터는
+        //    일반적인 방식으로 값을 꺼낼 수 없다.
+        //  - 즉 request.getParameter()를 사용하여 값을 꺼낼 수 없다.
+        // 해결책?
+        //  - multipart 형식을 분석하여 값을 추출해야 한다.
+        //     개발자가 직접 추출하는 코드를 작성하는가?
+        //  - 아니다! 이미 이런 작업을 수행하는 오픈 소스 라이브러리가 있다.
+        //  - 그 라이브러리를 사용하라!
+        // 어떤 라이브러리?
+        //  - 
     }
 }
+
+// multipart/form-data 형식으로 데이터를 보낸  POST 요청
+// - 보내는 데이터 파트 별로 분리하여 보낸다.
+// - 파트와 파트의 구분자는 Content-Type 헤더에 정의되어 있다.
+// - 
