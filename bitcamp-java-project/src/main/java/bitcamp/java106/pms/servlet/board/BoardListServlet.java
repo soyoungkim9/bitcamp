@@ -52,8 +52,11 @@ public class BoardListServlet extends HttpServlet {
             out.println("</tr>");
             for (Board board : list) {
                 out.println("</tr>");
-                out.printf("    <td>%d</td> <td>%s</td> <td>%s</td>\n",
-                    board.getNo(), board.getTitle(), board.getCreatedDate());
+                out.printf("    <td>%d</td> <td><a href='view?no=%d'>%s</a></td> <td>%s</td>\n",
+                    board.getNo(), 
+                    board.getNo(), 
+                    board.getTitle(),
+                    board.getCreatedDate());
                 out.println("</tr>");
 
             }
