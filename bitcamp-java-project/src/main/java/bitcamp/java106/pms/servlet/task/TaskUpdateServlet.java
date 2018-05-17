@@ -3,7 +3,7 @@ package bitcamp.java106.pms.servlet.task;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,28 +11,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.dao.TaskDao;
 import bitcamp.java106.pms.dao.TeamDao;
+import bitcamp.java106.pms.dao.TeamMemberDao;
+import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.server.ServerRequest;
+import bitcamp.java106.pms.server.ServerResponse;
 import bitcamp.java106.pms.servlet.InitServlet;
 
 @SuppressWarnings("serial")
-@WebServlet("/task/list")
-public class TaskListServlet extends HttpServlet {
+@WebServlet("/task/update")
+public class TaskUpdateServlet extends HttpServlet {
     
     TeamDao teamDao;
     TaskDao taskDao;
+    TeamMemberDao teamMemberDao;
     
     @Override
     public void init() throws ServletException {
         teamDao = InitServlet.getApplicationContext().getBean(TeamDao.class);
         taskDao = InitServlet.getApplicationContext().getBean(TaskDao.class);
+        teamMemberDao = InitServlet.getApplicationContext().getBean(TeamMemberDao.class);
     }
     
     @Override
-    protected void doGet(
-            HttpServletRequest request, 
+    protected void doPost(
+            HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
@@ -45,55 +52,40 @@ public class TaskListServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.println("<title>작업 목록</title>");
+        out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s'>\n", teamName);
+        out.println("<title>작업 변경</title>");
         out.println("</head>");
         out.println("<body>");
-        out.printf("<h1>'%s'의 작업목록</h1>\n", teamName);
+        out.printf("<h1>'%s'팀의 작업 변경</h1>", teamName);
         
         try {
-            Team team = teamDao.selectOne(teamName);
-            if (team == null) {
-                throw new Exception(teamName + "팀이 존재하지 않습니다.");
-            }
-            List<Task> list = taskDao.selectList(team.getName());
+            Task task = new Task()
+                .setNo(Integer.parseInt(request.getParameter("no")))
+                .setTitle(request.getParameter("title"))
+                .setStartDate(Date.valueOf(request.getParameter("startDate")))
+                .setEndDate(Date.valueOf(request.getParameter("endDate")))
+                .setNo(Integer.parseInt(request.getParameter("state")))
+                .setTeam(new Team().setName(request.getParameter("teamName")))
+                .setWorker(new Member().setId(request.getParameter("memberId")));
             
-            out.printf("<p><a href='add?teamName=%s'>새 작업</a></p>",
-                    teamName);
-            out.println("<table border='1'>");
-            out.println("<tr>");
-            out.println("    <th>번호</th><th>작업명</th><th>기간</th><th>작업자</th>");
-            out.println("</tr>");
-            
-            for (Task task : list) {
-                out.println("<tr>");
-                out.printf("<td>%d</td>", 
-                        task.getNo());
-                out.printf("<td><a href='view?no=%d'>%s</a></td>", 
-                        task.getNo(), 
-                        task.getTitle());
-                out.printf("<td>%d</td>", task.getNo());
-                out.printf("<td>%s ~ %s</td>", 
-                        task.getStartDate(), 
-                        task.getEndDate());
-                out.printf("<td>%s</td>\n",
-                        (task.getWorker() == null) ? 
-                                "-" : task.getWorker().getId());
-                out.println("</tr>");
+            int count = taskDao.update(task);
+            if (count == 0) {
+                out.println("<p>해당 작업이 없습니다.</p>");
+            } else {
+                out.println("<p>변경하였습니다.</p>");
             }
-            out.println("</table>");
         } catch (Exception e) {
-            out.printf("<p>%s</p>\n", e.getMessage());
+            out.println("<p>변경 실패!</p>");
             e.printStackTrace(out);
         }
         out.println("</body>");
         out.println("</html>");
     }
-
 }
 
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
-//ver 26 - TaskController에서 list() 메서드를 추출하여 클래스로 정의.
+//ver 26 - TaskController에서 update() 메서드를 추출하여 클래스로 정의.
 //ver 23 - @Component 애노테이션을 붙인다.
 //ver 22 - TaskDao 변경 사항에 맞춰 이 클래스를 변경한다.
 //ver 18 - ArrayList가 적용된 TaskDao를 사용한다.
