@@ -1,4 +1,3 @@
-// Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.servlet.teammember;
 
 import java.io.IOException;
@@ -38,9 +37,9 @@ public class TeamMemberAddServlet extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
+        
         String teamName = request.getParameter("teamName");
         String memberId = request.getParameter("memberId");
-        
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -49,9 +48,8 @@ public class TeamMemberAddServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.printf("<meta http-equiv='Refresh' content='1;url=../view?name=%s'>\n",
+        out.printf("<meta http-equiv='Refresh' content='1;url=../view?name=%s'>\n", 
                 teamName);
-        
         out.println("<title>팀 회원 등록</title>");
         out.println("</head>");
         out.println("<body>");
@@ -60,23 +58,21 @@ public class TeamMemberAddServlet extends HttpServlet {
         try {
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
-                out.printf("<p>%s 팀은 존재하지 않습니다.</p>\n", teamName);
-                return;
+                throw new Exception(teamName + "%s 팀은 존재하지 않습니다.");
             }
+            
             Member member = memberDao.selectOne(memberId);
             if (member == null) {
-                out.printf("<p>%s 회원은 없습니다.</p>\n", memberId);
-                return;
+                throw new Exception(memberId + "회원은 없습니다.");
             }
             if (teamMemberDao.isExist(teamName, memberId)) {
-                out.println("<p>이미 등록된 회원입니다.</p>");
-                return;
+                throw new Exception("이미 등록된 회원입니다.");
             }
             teamMemberDao.insert(teamName, memberId);
             out.println("<p>팀에 회원을 추가하였습니다.</p>");
             
         } catch (Exception e) {
-            out.println("<p>팀 회원 등록 실패!</p>");
+            out.printf("<p>%s</p>", e.getMessage());
             e.printStackTrace(out);
         }
         out.println("</body>");
@@ -84,6 +80,7 @@ public class TeamMemberAddServlet extends HttpServlet {
     }
 }
 
+//ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
 //ver 26 - TeamMemberController에서 add() 메서드를 추출하여 클래스로 정의.
