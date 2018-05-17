@@ -2,7 +2,6 @@ package bitcamp.java106.pms.servlet.board;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bitcamp.java106.pms.dao.BoardDao;
-import bitcamp.java106.pms.domain.Board;
+import bitcamp.java106.pms.server.ServerRequest;
+import bitcamp.java106.pms.server.ServerResponse;
 import bitcamp.java106.pms.servlet.InitServlet;
 
-@SuppressWarnings("serial")
-@WebServlet("/board/update")
-public class BoardUpdateServlet extends HttpServlet {
+@WebServlet("/board/delete")
+public class BoardDeleteServlet extends HttpServlet {
     BoardDao boardDao;
     
     @Override
@@ -25,16 +24,11 @@ public class BoardUpdateServlet extends HttpServlet {
     }
     
     @Override
-    protected void doPost(
+    protected void doGet(
             HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         
-        request.setCharacterEncoding("UTF-8");
-        
-        Board board = new Board();
-        board.setNo(Integer.parseInt(request.getParameter("no")));
-        board.setTitle(request.getParameter("title"));
-        board.setContent(request.getParameter("content"));
+        int no = Integer.parseInt(request.getParameter("no"));
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -45,27 +39,28 @@ public class BoardUpdateServlet extends HttpServlet {
         // 지정된 시간이 경과하면 특정 서블릿을 요청하도록 태그를 삽입!
         // => 웹브라우저는 meta 태그의 내용대로 동작한다.
         out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-        out.println("<title>게시물 변경</title>");
+        out.println("<title>게시물 삭제</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>게시물 변경 결과</h1>");
-
+        out.println("<h1>게시물 삭제 결과</h1>");
         try {
-            int count = boardDao.update(board);
+            int count = boardDao.delete(no);
+            
             if (count == 0) {
-                out.println("<p>해당 게시물이 존재하지 않습니다.</p>");
+                out.println("<p>해당 게시물이 없습니다.</p>");
             } else {
-                out.println("<p>변경하였습니다.</p>");
+                out.println("<p>삭제하였습니다.</p>");
             }
         } catch (Exception e) {
-            out.println("<p>변경 실패!</p>");
+            out.println("<p>삭제 실패!</p>");
             e.printStackTrace(out);
         }
         out.println("</body>");
         out.println("</html>");
     }
+    
 }
 
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
-//ver 26 - BoardController에서 update() 메서드를 추출하여 클래스로 정의.
+//ver 26 - BoardController에서 delete() 메서드를 추출하여 클래스로 정의. 
