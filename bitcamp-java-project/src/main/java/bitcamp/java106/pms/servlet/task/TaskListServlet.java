@@ -1,4 +1,3 @@
-// Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.servlet.task;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class TaskListServlet extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String teamName = request.getParameter("teamName");
-        
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
@@ -48,17 +47,16 @@ public class TaskListServlet extends HttpServlet {
         out.println("<title>작업 목록</title>");
         out.println("</head>");
         out.println("<body>");
-        out.printf("<h1>'%s'의 작업목록</h1>\n", teamName);
+        out.printf("<h1>'%s'의 작업 목록</h1>\n", teamName);
         
         try {
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
-                throw new Exception(teamName + "팀이 존재하지 않습니다.");
+                throw new Exception(teamName + " 팀은 존재하지 않습니다.");
             }
             List<Task> list = taskDao.selectList(team.getName());
             
-            out.printf("<p><a href='add?teamName=%s'>새 작업</a></p>",
-                    teamName);
+            out.printf("<p><a href='add?teamName=%s'>새작업</a></p>\n", teamName);
             out.println("<table border='1'>");
             out.println("<tr>");
             out.println("    <th>번호</th><th>작업명</th><th>기간</th><th>작업자</th>");
@@ -66,18 +64,15 @@ public class TaskListServlet extends HttpServlet {
             
             for (Task task : list) {
                 out.println("<tr>");
-                out.printf("<td>%d</td>", 
-                        task.getNo());
-                out.printf("<td><a href='view?no=%d'>%s</a></td>", 
-                        task.getNo(), 
+                out.printf("    <td>%d</td>", task.getNo());
+                out.printf("    <td><a href='view?no=%d'>%s</a></td>", 
+                        task.getNo(),
                         task.getTitle());
-                out.printf("<td>%d</td>", task.getNo());
-                out.printf("<td>%s ~ %s</td>", 
-                        task.getStartDate(), 
+                out.printf("    <td>%s ~ %s</td>", 
+                        task.getStartDate(),
                         task.getEndDate());
-                out.printf("<td>%s</td>\n",
-                        (task.getWorker() == null) ? 
-                                "-" : task.getWorker().getId());
+                out.printf("    <td>%s</td>\n", 
+                        (task.getWorker() == null) ? "-" : task.getWorker().getId());
                 out.println("</tr>");
             }
             out.println("</table>");
@@ -91,6 +86,7 @@ public class TaskListServlet extends HttpServlet {
 
 }
 
+//ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
 //ver 26 - TaskController에서 list() 메서드를 추출하여 클래스로 정의.

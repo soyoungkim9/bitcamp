@@ -74,14 +74,13 @@
       sdt=#{startDate},
       edt=#{endDate},
       stat=#{state},
-      mid=#{worker.id},
       <choose>
-      	<when test="worker.id != ''">
-      		mid=#{worker.id},
-      	</when>
-      	<otherwise>
-      		mid=null,
-      	</otherwise>
+          <when test="worker.id != ''">
+            mid=#{worker.id},
+          </when>
+          <otherwise>
+            mid=null,
+          </otherwise>
       </choose>
       tnm=#{team.name} 
     where tano=#{no}
@@ -91,10 +90,12 @@
     delete from pms2_task 
     where tano=#{value}
   </delete>
-   <delete id="deleteByTeam" parameterType="String">
+  
+  <delete id="deleteByTeam" parameterType="string">
     delete from pms2_task 
     where tnm=#{value}
   </delete>
+  
   <update id="updateState" parameterType="map">
     update pms2_task set 
       stat=#{state} 

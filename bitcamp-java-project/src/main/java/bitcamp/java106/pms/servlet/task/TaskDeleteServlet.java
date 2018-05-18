@@ -1,4 +1,3 @@
-// Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.servlet.task;
 
 import java.io.IOException;
@@ -25,13 +24,11 @@ public class TaskDeleteServlet extends HttpServlet {
     public void init() throws ServletException {
         teamDao = InitServlet.getApplicationContext().getBean(TeamDao.class);
         taskDao = InitServlet.getApplicationContext().getBean(TaskDao.class);
-        
     }
-    
     
     @Override
     protected void doGet(
-            HttpServletRequest request,
+            HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
@@ -45,11 +42,12 @@ public class TaskDeleteServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s'>\n", teamName);
+        out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s'>\n",
+                teamName);
         out.println("<title>작업 삭제</title>");
         out.println("</head>");
         out.println("<body>");
-        out.printf("<h1>'%s'작업 삭제 결과</h1>", teamName);
+        out.println("<h1>작업 삭제 결과</h1>");
         
         try {
             int count = taskDao.delete(no);
@@ -60,7 +58,7 @@ public class TaskDeleteServlet extends HttpServlet {
             }
         } catch (Exception e) {
             out.println("<p>삭제 실패!<br>");
-            out.println("잠시 후 다시 시도해주세요. 계속 오류 발생 시<br> ");
+            out.println("잠시 후 다시 시도해주세요. 계속 오류 발생 시<br>");
             out.println("담당자(내선: 120)에게 연락주세요.</p>");
             e.printStackTrace(out);
         }
@@ -69,6 +67,7 @@ public class TaskDeleteServlet extends HttpServlet {
     }
 }
 
+//ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
 //ver 26 - TaskController에서 delete() 메서드를 추출하여 클래스로 정의.

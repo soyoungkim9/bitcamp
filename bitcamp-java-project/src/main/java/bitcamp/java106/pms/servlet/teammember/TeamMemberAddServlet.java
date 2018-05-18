@@ -58,12 +58,11 @@ public class TeamMemberAddServlet extends HttpServlet {
         try {
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
-                throw new Exception(teamName + "%s 팀은 존재하지 않습니다.");
+                throw new Exception(teamName + " 팀은 존재하지 않습니다.");
             }
-            
             Member member = memberDao.selectOne(memberId);
             if (member == null) {
-                throw new Exception(memberId + "회원은 없습니다.");
+                throw new Exception(memberId + " 회원은 없습니다.");
             }
             if (teamMemberDao.isExist(teamName, memberId)) {
                 throw new Exception("이미 등록된 회원입니다.");
@@ -72,7 +71,7 @@ public class TeamMemberAddServlet extends HttpServlet {
             out.println("<p>팀에 회원을 추가하였습니다.</p>");
             
         } catch (Exception e) {
-            out.printf("<p>%s</p>", e.getMessage());
+            out.printf("<p>%s</p>\n", e.getMessage());
             e.printStackTrace(out);
         }
         out.println("</body>");

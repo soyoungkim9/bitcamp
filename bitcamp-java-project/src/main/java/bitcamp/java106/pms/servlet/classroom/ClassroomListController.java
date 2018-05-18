@@ -1,4 +1,5 @@
-package bitcamp.java106.pms.servlet.member;
+// Controller 규칙에 따라 메서드 작성
+package bitcamp.java106.pms.servlet.classroom;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,19 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java106.pms.dao.MemberDao;
-import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.dao.ClassroomDao;
+import bitcamp.java106.pms.domain.Classroom;
 import bitcamp.java106.pms.servlet.InitServlet;
 
 @SuppressWarnings("serial")
-@WebServlet("/member/list")
-public class MemberListServlet extends HttpServlet {
-
-    MemberDao memberDao;
+@WebServlet("/classroom/list")
+public class ClassroomListController extends HttpServlet {
+    ClassroomDao classroomDao;
     
     @Override
     public void init() throws ServletException {
-        memberDao = InitServlet.getApplicationContext().getBean(MemberDao.class);
+        classroomDao = InitServlet.getApplicationContext().getBean(ClassroomDao.class);
     }
 
     @Override
@@ -36,26 +36,28 @@ public class MemberListServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.println("<title>멤버 목록</title>");
+        out.println("<title>강의 목록</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>멤버 목록</h1>");
+        out.println("<h1>강의 목록</h1>");
         
         try {
-            List<Member> list = memberDao.selectList();
+            List<Classroom> list = classroomDao.selectList();
             
-            out.println("<p><a href='form.html'>새회원</a></p>");
+            out.println("<p><a href='form.html'>새 강의</a></p>");
             out.println("<table border='1'>");
             out.println("<tr>");
-            out.println("    <th>아이디</th><th>이메일</th>");
+            out.println("    <th>번호</th><th>강의명</th><th>기간</th><th>강의실</th>");
             out.println("</tr>");
             
-            for (Member member : list) {
+            for (Classroom classroom : list) {
                 out.println("<tr>");
-                out.printf("    <td><a href='view?id=%s'>%s</a></td><td>%s</td>\n",
-                    member.getId(),
-                    member.getId(),
-                    member.getEmail());
+                out.printf("    <td>%d</td>\n", classroom.getNo());
+                out.printf("    <td><a href='view?no=%d'>%s</a></td>\n",
+                        classroom.getNo(), classroom.getTitle());
+                out.printf("    <td>%s ~ %s</td>\n", 
+                        classroom.getStartDate(), classroom.getEndDate());
+                out.printf("    <td>%s</td>\n", classroom.getRoom());
                 out.println("</tr>");
             }
             out.println("</table>");
@@ -68,14 +70,7 @@ public class MemberListServlet extends HttpServlet {
     }
 }
 
-//ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
-//ver 26 - MemberController에서 list() 메서드를 추출하여 클래스로 정의.
-//ver 23 - @Component 애노테이션을 붙인다.
-//ver 22 - MemberDao 변경 사항에 맞춰 이 클래스를 변경한다.
-//ver 18 - ArrayList가 적용된 MemberDao를 사용한다.
-//         onMemberList()에서 배열의 각 항목에 대해 null 값을 검사하는 부분을 제거한다.
-//ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
-// ver 15 - MemberDao를 생성자에서 주입 받도록 변경.
-// ver 14 - MemberDao를 사용하여 회원 데이터를 관리한다.
+//ver 26 - ClassroomController에서 list() 메서드를 추출하여 클래스로 정의.
+
