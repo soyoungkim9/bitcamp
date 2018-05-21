@@ -86,6 +86,7 @@ public class TeamMemberDao {
     }
 }
 
+//ver 37 - selectListWithEmail() 추가 
 //ver 33 - Mybatis 적용
 //ver 32 - DB 커넥션 풀 적용
 //ver 31 - JDBC API 적용
