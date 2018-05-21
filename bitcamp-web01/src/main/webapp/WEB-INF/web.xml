@@ -18,10 +18,22 @@
     <display-name>
       서버 관리자 화면에서 출력될 웹 애플리케이션 이름을 적는 태그이다.
     </display-name>
-
+	
     <!--  
     <request-character-encoding>UTF-8</request-character-encoding>
     -->
+    <!-- 필터 배치하기 -->
+    <!-- 필터 등록 -->
+   
+<!-- 	<filter>
+		<filter-name>filter1</filter-name>
+		<filter-class>step09.ex1.Filter1</filter-class>
+	</filter>
+	필터를 적용할 URL 지정
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<url-pattern>/step09/ex1/*</url-pattern>
+	</filter-mapping>  -->
     
     <!-- 개발자가 만든 서블릿 클래스의 정보를 등록 -->
     <servlet>
