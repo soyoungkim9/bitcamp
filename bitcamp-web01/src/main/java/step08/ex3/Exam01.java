@@ -1,4 +1,4 @@
-// 실행 위임 하는 방법 - forward
+// 다른 서블릿의 작업을 포함하기 - include
 package step08.ex3;
 
 import java.io.IOException;
@@ -29,26 +29,24 @@ public class Exam01 extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("  <meta charset='UTF-8'>");
-        out.println("  <title>계산결과</title>");
-        out.println("</head>");
-        out.println("<body>");
+        out.println("  <title>include</title>");
         
         RequestDispatcher 요청배달자 = request.getRequestDispatcher("/step08/ex3/common");
         요청배달자.include(request, response);
-        out.printf("<h1>%s님 반갑습니다.</h1>", name);
         
-                
-        out.println("</body>");
-        out.println("</html>");
-
+        out.println("</head>");
+        out.println("<body>");
+        
         요청배달자 = request.getRequestDispatcher("/step08/ex3/header");
         요청배달자.include(request, response);
         
-        요청배달자.include(request, response);
-        out.printf("<h1>%s님 반갑습니다.</h1>", name);
+        out.printf("<h1>%s 님 반갑습니다.</h1>\n", name);
         
         요청배달자 = request.getRequestDispatcher("/step08/ex3/footer");
         요청배달자.include(request, response);
+        
+        out.println("</body>");
+        out.println("</html>");
     }
 }
 

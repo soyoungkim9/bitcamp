@@ -1,15 +1,13 @@
 // ServletRequestAttributeListener: ServletRequest에 값을 저장하거나 제거할 때 발생하는 이벤트 처리
+//                    
 package step09.ex2;
 
-
-import javax.servlet.ServletRequest;
 import javax.servlet.ServletRequestAttributeEvent;
 import javax.servlet.ServletRequestAttributeListener;
 import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class Listener3 implements ServletRequestAttributeListener {
-    
     @Override
     public void attributeAdded(ServletRequestAttributeEvent srae) {
         // ServletRequest 객체에 값을 저장할 때 호출된다.
@@ -27,6 +25,8 @@ public class Listener3 implements ServletRequestAttributeListener {
                 srae.getValue());
     }
 }
+
+
 
 
 

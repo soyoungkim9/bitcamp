@@ -1,4 +1,4 @@
-// ServletRequestAttrivuteListener
+// ServletRequestAttributeListener 테스트
 package step09.ex2;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class Exam01 extends HttpServlet {
     protected void doGet(
             HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        
+        // 테스트: http://localhost:8888/java106-web01/step09/ex2/exam01?name=aaa&age=20
         // 파라미터로부터 받은 값을 ServletRequest에 저장해보자!
         // 1) 파라미터 값을 꺼낸다.
         String name = request.getParameter("name");
@@ -26,11 +26,11 @@ public class Exam01 extends HttpServlet {
         // 2) ServletRequest에 저장한다.
         request.setAttribute("이름", name);
         request.setAttribute("나이", age);
-        System.out.println("-------------------");
+        System.out.println("---------------------");
         
-        // 3) ServletRequest에 저장된 ㄱ밧을 변경
-        request.setAttribute("이름", "우하하하");
-    
+        // 3) ServletRequest에 저장된 값을 변경한다.
+        request.setAttribute("이름", "우하하");
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
@@ -38,14 +38,12 @@ public class Exam01 extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("  <meta charset='UTF-8'>");
-        out.println("  <title>계산결과</title>");
-        
+        out.println("  <title>exam01</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>exam01 실행!</h1>\n");
+        out.println("<h1>exam01 실행!</h1>");
         out.println("</body>");
         out.println("</html>");
-        
     }
 }
 

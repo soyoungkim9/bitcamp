@@ -1,4 +1,4 @@
-// 실행 위임 하는 방법 - forward
+// 다른 서블릿의 작업을 포함하기 - include
 package step08.ex3;
 
 import java.io.IOException;
@@ -19,17 +19,15 @@ public class Common extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         
         PrintWriter out = response.getWriter();
-        
-        
         out.println("<style>");
-        out.println("div#hear {");
-        out.println("   background-color: blue;");
-        out.println("   color: white;");
-        out.println("   font-weight: bold;");
+        out.println("div#header {");
+        out.println("    background-color: blue;");
+        out.println("    color: white;");
+        out.println("    font-weight: bold;");
         out.println("}");
         
         out.println("div#footer {");
-        out.println("   background-color: yellow;");
+        out.println("    background-color: yellow;");
         out.println("}");
         out.println("</style>");
     }

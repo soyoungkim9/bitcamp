@@ -1,4 +1,4 @@
-// 실행 위임 하는 방법 - forward
+// 서블릿 실행 
 package step09.ex1;
 
 import java.io.IOException;
@@ -25,15 +25,14 @@ public class Exam01 extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("  <meta charset='UTF-8'>");
-        out.println("  <title>계산결과</title>");
-        
+        out.println("  <title>exam01</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>exam01 실행!</h1>\n");
+        out.println("<h1>exam01 실행!</h1>");
         out.println("</body>");
         out.println("</html>");
         
-        // 콘솔 창에 서블릿이 실행되었음을 표시하기 위해
+        // 콘솔 창에 서블릿이 실행되었음을 표시하기 위해 출력한다.
         // => 필터의 실행과 서블릿의 실행 순서를 확인하기 위함이다.
         System.out.println("/step09/ex1/exam01 실행!");
     }

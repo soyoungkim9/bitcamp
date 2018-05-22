@@ -1,4 +1,4 @@
-// 실행 위임 하는 방법 - forward
+// 다른 서블릿의 작업을 포함하기 - include
 package step08.ex3;
 
 import java.io.IOException;
@@ -21,10 +21,9 @@ public class Footer extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         out.println("<div id='footer'>");
-        out.println("   <p>Copyright. &copy; 2018 자바 106기"
+        out.println("    <p>Copyright &copy; 2018 자바106기"
                 + "<address>서울시 서초구 교육센터</address></p>");
         out.println("</div>");
-
     }
 }
 
