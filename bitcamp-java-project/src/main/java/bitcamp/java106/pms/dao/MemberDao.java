@@ -52,13 +52,10 @@ public class MemberDao {
         }
     }
 
-    public Member selectOne(String id, String password) throws Exception {
+    public Member selectOne(String id) throws Exception {
         try (SqlSession sqlSession = this.sqlSessionFactory.openSession()) {
-            HashMap<String,String> params = new HashMap<>();
-            params.put("id", id);
-            params.put("password", password);
             return sqlSession.selectOne(
-                    "bitcamp.java106.pms.dao.MemberDao.selectOne", params);
+                    "bitcamp.java106.pms.dao.MemberDao.selectOne", id);
         }   
     }
     
