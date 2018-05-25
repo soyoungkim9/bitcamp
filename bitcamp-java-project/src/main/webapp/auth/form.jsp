@@ -4,7 +4,7 @@
 <%
 String refererUrl = request.getHeader("Referer");
 if (refererUrl != null && !refererUrl.endsWith("/auth/login")) {
-	session.setAttribute("refererUrl", refererUrl);
+    session.setAttribute("refererUrl", refererUrl);
 }
 String id = "";
 Cookie[] cookies = request.getCookies();
@@ -24,7 +24,7 @@ if (cookies != null) {
 <title>로그인</title>
 </head>
 <body>
-<h1>로그인 살패!(MVC)</h1>
+<h1>로그인(MVC)</h1>
 <form action='login' method='post'>
 <table border='1'>
 <tr><th>아이디</th>
@@ -37,5 +37,4 @@ if (cookies != null) {
 </form>
 </body>
 </html>
-
     
