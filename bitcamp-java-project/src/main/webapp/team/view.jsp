@@ -47,11 +47,7 @@ Team team = (Team)request.getAttribute("team");
 <a href='../task/list?teamName=<%=team.getName()%>'>작업목록</a>
 </p>
 </form>
-
-<%
-out.flush();
-request.getRequestDispatcher("/team/member/list.jsp").include(request, response);%>
-
+	<jsp:include page="/team/member/list.jsp"/>
 </body>
 </html>
 
