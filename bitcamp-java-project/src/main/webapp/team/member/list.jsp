@@ -4,8 +4,8 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:useBean id="team" class="bitcamp.java106.pms.domain.Team" scope="request"/>
 <%
-Team team = (Team)request.getAttribute("team");
 List<Member> members = team.getMembers();
 %>
 <h2>회원 목록</h2>
