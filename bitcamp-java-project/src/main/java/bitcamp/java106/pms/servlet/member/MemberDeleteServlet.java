@@ -17,7 +17,7 @@ import bitcamp.java106.pms.support.WebApplicationContextUtils;
 @WebServlet("/member/delete")
 public class MemberDeleteServlet extends HttpServlet {
 
-    MemberDao memberDao;
+    MemberDao memberDao; 
     
     @Override
     public void init() throws ServletException {
