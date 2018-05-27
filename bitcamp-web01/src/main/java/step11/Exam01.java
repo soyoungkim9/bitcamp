@@ -1,3 +1,4 @@
+// 저장소 사용
 package step11;
 
 import java.io.IOException;
@@ -13,10 +14,12 @@ import javax.servlet.http.HttpSession;
 @SuppressWarnings("serial")
 @WebServlet("/step11/exam01")
 public class Exam01 extends HttpServlet {
+    
     @Override
     protected void doGet(
-            HttpServletRequest request,
+            HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
+        
         ServletContext sc = this.getServletContext();
         HttpSession session = request.getSession();
         
@@ -25,6 +28,15 @@ public class Exam01 extends HttpServlet {
         request.setAttribute("v3", "ccc");
         
         request.getRequestDispatcher("/step11/exam02").forward(request, response);
-        
     }
 }
+
+
+
+
+
+
+
+
+
+

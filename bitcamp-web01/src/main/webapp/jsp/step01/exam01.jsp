@@ -1,27 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>exam01</title>
 </head>
 <body>
-<h1>구동원리</h1>
+<h1>JSP 구동원리</h1>
 <pre>
-클라이언트가  exam01.jsp 요청
-===> 만약  exam01.jsp로 만든 서블릿 클래스가 있다면,
-	   그리고  exam01.jsp가 변경되지 않았다면
-	   해당 서블릿 클래스를 실행한다.
+클라이언트가 exam01.jsp 요청 
+===> exam01.jsp로 만든 서블릿 클래스가 있다면,
+     그리고 exam01.jsp가 변경되지 않았다면 
+     해당 서블릿 클래스를 실행한다.
 ===> exam01.jsp로 만든 서블릿 클래스가 없거나
-	  또는 exam01.jsp가 변경되었다면,
-  ===>[JSP 엔진]
-   ===> .java 소스 생성 : 배치폴더(ex: tmp0)/work/...
-	===> [java 컴파일러]
-	  ===> .class 파일 생성	: 배치폴더(ex: tmp0)/work/....
-	    ===> service()를 호출하여 서블릿 실행!
-
-
+     또는 exam01.jsp가 변경되었다면,     
+  ===> [JSP 엔진] 
+    ===> .java 소스 생성   : 배치폴더(ex: tmp0)/work/.... 
+      ===> [Java 컴파일러] 
+        ===> .class 파일 생성   : 배치폴더(ex: tmp0)/work/....
+          ===> service()를 호출하여 서블릿 실행! 
+          
 </pre>
 </body>
 </html>
+
+
+
+
+
+
+
