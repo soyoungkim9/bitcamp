@@ -23,9 +23,9 @@ public class MemberUpdateServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer =
+        ApplicationContext iocContainer = 
                 WebApplicationContextUtils.getWebApplicationContext(
-                        this.getServletContext());
+                        this.getServletContext()); 
         memberDao = iocContainer.getBean(MemberDao.class);
     }
 

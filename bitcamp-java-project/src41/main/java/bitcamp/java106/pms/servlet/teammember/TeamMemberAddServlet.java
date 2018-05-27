@@ -29,9 +29,9 @@ public class TeamMemberAddServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer =
+        ApplicationContext iocContainer = 
                 WebApplicationContextUtils.getWebApplicationContext(
-                        this.getServletContext());
+                        this.getServletContext()); 
         teamDao = iocContainer.getBean(TeamDao.class);
         memberDao = iocContainer.getBean(MemberDao.class);
         teamMemberDao = iocContainer.getBean(TeamMemberDao.class);

@@ -10,13 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 
 import bitcamp.java106.pms.dao.BoardDao;
 import bitcamp.java106.pms.domain.Board;
-import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.support.WebApplicationContextUtils;
 
 @SuppressWarnings("serial")
@@ -27,9 +25,9 @@ public class BoardListServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer =
+        ApplicationContext iocContainer = 
                 WebApplicationContextUtils.getWebApplicationContext(
-                        this.getServletContext());
+                        this.getServletContext()); 
         boardDao = iocContainer.getBean(BoardDao.class);
     }
     
