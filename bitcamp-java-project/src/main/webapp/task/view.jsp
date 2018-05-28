@@ -4,6 +4,7 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 <body>
 <jsp:include page="/header.jsp"/>
 <h1>작업 보기(MVC + JSP 전용 태그)</h1>
-<jsp:useBean id="task" class="bitcamp.java106.pms.domain.Task" scope="request"/>
 <form action='update' method='post'>
 <input type='hidden' name='no' value='${param.no}'>
 <table border='1'>
@@ -36,14 +36,9 @@
     <td>
         <select name='memberId'>
             <option value=''>--선택 안함--</option>
-<% 
-List<Member> members = (List<Member>) request.getAttribute("members");
-for (Member member : members) {
-    pageContext.setAttribute("member", member);
-    String selected = (member.equals(task.getWorker())) ? "selected" : "";
-%>
+<c:forEach items="${members}" var="member">
             <option ${member.id == task.worker.id ? "selected" : ""}>${member.id}</option>
-<%} %>
+</c:forEach>
         </select>
     </td>
 </tr>
