@@ -59,7 +59,7 @@ public class TaskUpdateServlet extends HttpServlet {
             if (count == 0) {
                 throw new Exception("<p>해당 작업이 없습니다.</p>");
             }
-            response.sendRedirect("list?teamName=" + 
+            request.setAttribute("viewUrl", "redirect:list.do?teamName=" +
                     URLEncoder.encode(teamName, "UTF-8"));
             // 응답 헤더의 값으로 한글을 포함할 때는 
             // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.

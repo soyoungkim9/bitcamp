@@ -57,7 +57,7 @@ public class TeamMemberAddServlet extends HttpServlet {
                 throw new Exception("이미 등록된 회원입니다.");
             }
             teamMemberDao.insert(teamName, memberId);
-            response.sendRedirect("../view?name=" + 
+            request.setAttribute("viewUrl", "redirect:../view.do?name=" + 
                     URLEncoder.encode(teamName, "UTF-8"));
             // 개발자가 요청이나 응답헤더를 직접 작성하여 값을 주고 받으로 한다면,
             // URL 인코딩과 URL 디코딩을 손수 해 줘야 한다.

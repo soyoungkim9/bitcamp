@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
             } else { // 로그인 실패!
                 session.invalidate();
                 response.setContentType("text/html;charset=UTF-8");
-                request.getRequestDispatcher("/auth/fail.jsp").include(request, response);
+                request.setAttribute("viewUrl", "/auth/fail.jsp");
             }
         } catch (Exception e) {
             request.setAttribute("error", e);
