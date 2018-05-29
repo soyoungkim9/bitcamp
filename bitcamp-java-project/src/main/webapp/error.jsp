@@ -11,7 +11,7 @@
 <title>실행 오류</title>
 </head>
 <body>
-<h1><%=request.getAttribute("title")%>(MVC)</h1>
+<h1>실행 오류</h1>
 <pre>
 <%=exception%>
 </pre>
