@@ -51,9 +51,7 @@ public class TeamMemberDeleteServlet extends HttpServlet {
             // URL 인코딩과 URL 디코딩을 손수 해 줘야 한다.
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "팀 회원 삭제 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
     

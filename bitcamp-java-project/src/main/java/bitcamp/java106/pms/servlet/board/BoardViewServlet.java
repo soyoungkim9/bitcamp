@@ -43,9 +43,7 @@ public class BoardViewServlet extends HttpServlet {
             request.setAttribute("viewUrl", "/board/view.jsp");
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "게시물 상세조회 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
 }

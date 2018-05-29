@@ -67,9 +67,7 @@ public class TaskUpdateServlet extends HttpServlet {
             // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "작업 변경 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
     

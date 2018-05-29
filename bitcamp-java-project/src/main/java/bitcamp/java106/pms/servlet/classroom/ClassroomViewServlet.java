@@ -44,9 +44,7 @@ public class ClassroomViewServlet extends HttpServlet {
             request.setAttribute("viewUrl", "/classroom/view.jsp");
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "강의 상세조회 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
 }

@@ -77,9 +77,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("viewUrl", "/auth/fail.jsp");
             }
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "로그인 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
 }

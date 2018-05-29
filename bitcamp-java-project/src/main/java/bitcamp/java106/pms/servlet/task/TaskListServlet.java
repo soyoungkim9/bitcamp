@@ -50,9 +50,7 @@ public class TaskListServlet extends HttpServlet {
             request.setAttribute("viewUrl", "/task/list.jsp");
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "작업 목록조회 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
 

@@ -53,9 +53,7 @@ public class TaskDeleteServlet extends HttpServlet {
             
             
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "작업 삭제 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
     
