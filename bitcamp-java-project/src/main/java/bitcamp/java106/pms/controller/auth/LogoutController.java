@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/auth/logout")
-public class LogoutController implements PageController {
+public class LogoutController {
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String logout(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         // 세션을 꺼내 무효화시킨다.
@@ -24,5 +24,6 @@ public class LogoutController implements PageController {
     }
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 41 - 클래스 추가

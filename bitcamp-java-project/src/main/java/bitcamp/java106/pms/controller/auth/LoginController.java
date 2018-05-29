@@ -8,23 +8,24 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/auth/login")
-public class LoginController implements PageController {
+public class LoginController {
     
     MemberDao memberDao;
-
+    
     public LoginController(MemberDao memberDao) {
         this.memberDao = memberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String login(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+        
         String id = request.getParameter("id");
         String password = request.getParameter("password");
         
@@ -75,6 +76,7 @@ public class LoginController implements PageController {
 //                                                       <=== 응답: index.html
 // 메인화면 출력!
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 41 - 클래스 추가

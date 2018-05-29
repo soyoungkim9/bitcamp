@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/view")
-public class TeamViewController implements PageController {
+public class TeamViewController {
 
     TeamDao teamDao;
     
@@ -18,10 +18,11 @@ public class TeamViewController implements PageController {
         this.teamDao = teamDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String view(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+        
         String name = request.getParameter("name");
         
         Team team = teamDao.selectOneWithMembers(name);
@@ -33,6 +34,7 @@ public class TeamViewController implements PageController {
     }
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

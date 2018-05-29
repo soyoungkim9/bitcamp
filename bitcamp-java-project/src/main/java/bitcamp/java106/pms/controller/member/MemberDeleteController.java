@@ -5,11 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.MemberDao;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/member/delete")
-public class MemberDeleteController implements PageController {
+public class MemberDeleteController {
 
     MemberDao memberDao;
     
@@ -17,20 +17,23 @@ public class MemberDeleteController implements PageController {
         this.memberDao = memberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String delete(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         String id = request.getParameter("id");
+
         int count = memberDao.delete(id);
         if (count == 0) {
             throw new Exception("해당 회원이 없습니다.");
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 39 - forward 적용

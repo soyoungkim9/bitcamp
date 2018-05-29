@@ -5,28 +5,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TaskDao;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/delete")
-public class TeamDeleteController implements PageController {
+public class TeamDeleteController {
 
     TeamDao teamDao;
     TeamMemberDao teamMemberDao;
     TaskDao taskDao;
-
-    public TeamDeleteController(TeamDao teamDao, TaskDao taskDao, TeamMemberDao teamMemberDao) {
+    
+    public TeamDeleteController(TeamDao teamDao, 
+            TeamMemberDao teamMemberDao,
+            TaskDao taskDao) {
         this.teamDao = teamDao;
-        this.taskDao = taskDao;
         this.teamMemberDao = teamMemberDao;
+        this.taskDao = taskDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String delete(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+        
         String name = request.getParameter("name");
         
         teamMemberDao.delete(name);
@@ -37,8 +40,10 @@ public class TeamDeleteController implements PageController {
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

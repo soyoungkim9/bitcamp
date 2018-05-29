@@ -5,20 +5,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.BoardDao;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/board/delete")
-public class BoardDeleteController implements PageController {
+public class BoardDeleteController {
     
     BoardDao boardDao;
     
     public BoardDeleteController(BoardDao boardDao) {
         this.boardDao = boardDao;
     }
-    
-    @Override
-    public String service(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    @RequestMapping
+    public String delete(
+            HttpServletRequest request, 
+            HttpServletResponse response) throws Exception {
+        
         int no = Integer.parseInt(request.getParameter("no"));
         int count = boardDao.delete(no);
         if (count == 0) {
@@ -26,8 +29,10 @@ public class BoardDeleteController implements PageController {
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 39 - forward 적용

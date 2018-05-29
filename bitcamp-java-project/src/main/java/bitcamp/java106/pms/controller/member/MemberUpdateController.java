@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/member/update")
-public class MemberUpdateController implements PageController {
+public class MemberUpdateController {
 
     MemberDao memberDao;
     
@@ -18,9 +19,9 @@ public class MemberUpdateController implements PageController {
         this.memberDao = memberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String update(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         Member member = new Member();
@@ -34,8 +35,10 @@ public class MemberUpdateController implements PageController {
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

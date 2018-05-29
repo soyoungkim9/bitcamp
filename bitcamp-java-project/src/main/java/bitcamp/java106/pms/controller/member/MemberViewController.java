@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/member/view")
-public class MemberViewController implements PageController {
+public class MemberViewController {
 
     MemberDao memberDao;
     
@@ -18,12 +18,13 @@ public class MemberViewController implements PageController {
         this.memberDao = memberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String view(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
-        
+
         String id = request.getParameter("id");
+        
         Member member = memberDao.selectOne(id);
         if (member == null) {
             throw new Exception("유효하지 않은 멤버 아이디입니다.");
@@ -33,6 +34,7 @@ public class MemberViewController implements PageController {
     }
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

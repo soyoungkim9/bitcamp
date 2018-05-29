@@ -8,31 +8,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TaskDao;
-import bitcamp.java106.pms.dao.TeamDao;
-import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/task/update")
-public class TaskUpdateController implements PageController {
+public class TaskUpdateController {
     
-    TeamDao teamDao;
     TaskDao taskDao;
-    TeamMemberDao teamMemberDao;
     
-    public TaskUpdateController(TeamDao teamDao, TaskDao taskDao, TeamMemberDao teamMemberDao) {
-        this.teamDao = teamDao;
+    public TaskUpdateController(TaskDao taskDao) {
         this.taskDao = taskDao;
-        this.teamMemberDao = teamMemberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String update(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+        
         String teamName = request.getParameter("teamName");
         
         Task task = new Task()
@@ -49,9 +44,14 @@ public class TaskUpdateController implements PageController {
             throw new Exception("<p>해당 작업이 없습니다.</p>");
         }
         return "redirect:list.do?teamName=" + URLEncoder.encode(teamName, "UTF-8");
+            // 응답 헤더의 값으로 한글을 포함할 때는 
+            // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.
+            // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

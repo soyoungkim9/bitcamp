@@ -7,23 +7,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.ClassroomDao;
 import bitcamp.java106.pms.domain.Classroom;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/classroom/update")
-public class ClassroomUpdateController implements PageController {
+public class ClassroomUpdateController {
+    
     ClassroomDao classroomDao;
     
     public ClassroomUpdateController(ClassroomDao classroomDao) {
         this.classroomDao = classroomDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String update(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
-        
+     
         Classroom classroom = new Classroom();
         classroom.setNo(Integer.parseInt(request.getParameter("no")));
         classroom.setTitle(request.getParameter("title"));
@@ -37,8 +38,10 @@ public class ClassroomUpdateController implements PageController {
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - 필터 적용

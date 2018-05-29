@@ -7,25 +7,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/member/delete")
-public class TeamMemberDeleteController implements PageController {
+public class TeamMemberDeleteController {
     
     TeamDao teamDao;
     TeamMemberDao teamMemberDao;
     
-    public TeamMemberDeleteController(TeamDao teamDao, TeamMemberDao teamMemberDao) {
+    public TeamMemberDeleteController(TeamDao teamDao, 
+            TeamMemberDao teamMemberDao) {
         this.teamDao = teamDao;
         this.teamMemberDao = teamMemberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String delete(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+         
         String teamName = request.getParameter("teamName");
         String memberId = request.getParameter("memberId");
         
@@ -33,10 +35,15 @@ public class TeamMemberDeleteController implements PageController {
         if (count == 0) {
             throw new Exception("<p>해당 팀원이 존재하지 않습니다.</p>");
         }
-        return "redirect:../view.do?name=" + URLEncoder.encode(teamName, "UTF-8");
+        return "redirect:../view.do?name=" + 
+                URLEncoder.encode(teamName, "UTF-8");
+        // 개발자가 요청이나 응답헤더를 직접 작성하여 값을 주고 받으로 한다면,
+        // URL 인코딩과 URL 디코딩을 손수 해 줘야 한다.
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

@@ -7,40 +7,43 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TaskDao;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/task/list")
-public class TaskListController implements PageController {
+public class TaskListController {
     
     TeamDao teamDao;
     TaskDao taskDao;
     
-    public TaskListController(TeamDao teamDao, TaskDao taskDao) {
+    public TaskListController(TeamDao teamDao,
+            TaskDao taskDao) {
         this.teamDao = teamDao;
         this.taskDao = taskDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String list(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         String teamName = request.getParameter("teamName");
 
-            Team team = teamDao.selectOne(teamName);
-            if (team == null) {
-                throw new Exception(teamName + " 팀은 존재하지 않습니다.");
-            }
-            List<Task> list = taskDao.selectList(team.getName());
-            request.setAttribute("list", list);
-            return "/task/list.jsp";
+        Team team = teamDao.selectOne(teamName);
+        if (team == null) {
+            throw new Exception(teamName + " 팀은 존재하지 않습니다.");
+        }
+        List<Task> list = taskDao.selectList(team.getName());
+        request.setAttribute("list", list);
+        return  "/task/list.jsp";
     }
+
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

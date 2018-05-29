@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/update")
-public class TeamUpdateController implements PageController {
+public class TeamUpdateController {
 
     TeamDao teamDao;
     
@@ -20,9 +20,9 @@ public class TeamUpdateController implements PageController {
         this.teamDao = teamDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String update(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         Team team = new Team();
@@ -38,8 +38,10 @@ public class TeamUpdateController implements PageController {
         }
         return "redirect:list.do";
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.

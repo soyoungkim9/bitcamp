@@ -5,21 +5,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.BoardDao;
 import bitcamp.java106.pms.domain.Board;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/board/add")
-public class BoardAddController implements PageController {
+public class BoardAddController {
     
     BoardDao boardDao;
+    
     public BoardAddController(BoardDao boardDao) {
         this.boardDao = boardDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String add(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
         Board board = new Board();
@@ -29,8 +30,10 @@ public class BoardAddController implements PageController {
         boardDao.insert(board);
         return "redirect:list.do";
     }
+
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - 필터 적용

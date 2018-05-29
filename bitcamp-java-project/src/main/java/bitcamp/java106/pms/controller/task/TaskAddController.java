@@ -1,48 +1,71 @@
 package bitcamp.java106.pms.controller.task;
 
-import java.util.List;
+import java.net.URLEncoder;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TaskDao;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/task/add")
-public class TaskAddController implements PageController {
+public class TaskAddController {
     
     TeamDao teamDao;
     TaskDao taskDao;
     TeamMemberDao teamMemberDao;
 
-    public TaskAddController(TeamDao teamDao, TaskDao taskDao, TeamMemberDao teamMemberDao) {
+    public TaskAddController(TeamDao teamDao,
+            TaskDao taskDao,
+            TeamMemberDao  teamMemberDao) {
         this.teamDao = teamDao;
         this.taskDao = taskDao;
         this.teamMemberDao = teamMemberDao;
     }
     
-    @Override
-    public String service(
-            HttpServletRequest request,
+    @RequestMapping
+    public String add(
+            HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
+        
         String teamName = request.getParameter("teamName");
         
-        Team team = teamDao.selectOne(teamName);
+        Task task = new Task();
+        task.setTitle(request.getParameter("title"));
+        task.setStartDate(Date.valueOf(request.getParameter("startDate")));
+        task.setEndDate(Date.valueOf(request.getParameter("endDate")));
+        task.setTeam(new Team().setName(teamName));
+        task.setWorker(new Member().setId(request.getParameter("memberId")));
+        
+        Team team = teamDao.selectOne(task.getTeam().getName());
         if (team == null) {
-            throw new Exception(teamName + " 팀은 존재하지 않습니다.");
+            throw new Exception(task.getTeam().getName() + " 팀은 존재하지 않습니다.");
         }
-        List<Member> members = teamMemberDao.selectListWithEmail(teamName);
-        request.setAttribute("members", members);
-        return "/task/form.jsp";
+        
+        if (task.getWorker().getId().length() > 0 &&
+            !teamMemberDao.isExist(
+                task.getTeam().getName(), task.getWorker().getId())) {
+            throw new Exception(task.getWorker().getId() + "는 이 팀의 회원이 아닙니다.");
+        }
+        
+        taskDao.insert(task);
+        return "redirect:list.do?teamName=" + URLEncoder.encode(teamName, "UTF-8");
+        // 응답 헤더의 값으로 한글을 포함할 때는 
+        // 서블릿 컨테이너가 자동으로 URL 인코딩 하지 않는다.
+        // 위와 같이 개발자가 직접 URL 인코딩 해야 한다.
     }
+    
 }
 
+//ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용
 //ver 40 - CharacterEncodingFilter 필터 적용.
