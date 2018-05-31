@@ -6,17 +6,16 @@ import java.util.Map;
 import bitcamp.java106.pms.domain.Task;
 
 public interface TaskDao {
-            
-    public int delete(int no);
-    public int deleteByTeam(String teamName);
-    public List<Task> selectList(String teamName);
-    public int insert(Task task);
-    public int update(Task task);
-    public Task selectOne(int no);
-    public int updateState(Map<String,Object> params);
-    
+    int delete(int no);
+    int deleteByTeam(String teamName);
+    List<Task> selectList(String teamName);
+    int insert(Task task);
+    int update(Task task);
+    Task selectOne(int no);
+    int updateState(Map<String,Object> params);
 }
 
+//ver 50 - 클래스를 인터페이스로 전환
 //ver 33 - Mybatis 적용
 //ver 32 - DB 커넥션 풀 적용
 //ver 31 - JDBC API 적용

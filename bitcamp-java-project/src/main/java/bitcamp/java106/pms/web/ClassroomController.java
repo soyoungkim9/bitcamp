@@ -3,12 +3,15 @@ package bitcamp.java106.pms.web;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bitcamp.java106.pms.dao.ClassroomDao;
 import bitcamp.java106.pms.domain.Classroom;
 
-@Component("/classroom")
+@Controller
+@RequestMapping("/classroom")
 public class ClassroomController {
     
     ClassroomDao classroomDao;
@@ -19,12 +22,14 @@ public class ClassroomController {
     
     @RequestMapping("/add")
     public String add(Classroom classroom) throws Exception {
+        
         classroomDao.insert(classroom);
         return "redirect:list.do";
     }
     
     @RequestMapping("/delete")
     public String delete(@RequestParam("no") int no) throws Exception {
+     
         int count = classroomDao.delete(no);
         if (count == 0) {
             throw new Exception("<p>해당 강의가 없습니다.</p>");
@@ -52,7 +57,7 @@ public class ClassroomController {
     
     @RequestMapping("/view")
     public String view(
-            @RequestParam("no") int no,
+            @RequestParam("no") int no, 
             Map<String,Object> map) throws Exception {
      
         Classroom classroom = classroomDao.selectOne(no);
@@ -65,6 +70,9 @@ public class ClassroomController {
     }
 }
 
+//ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
+//ver 48 - CRUD 기능을 한 클래스에 합치기
+//ver 47 - 애노테이션을 적용하여 요청 핸들러 다루기
 //ver 46 - 페이지 컨트롤러를 POJO를 변경
 //ver 45 - 프론트 컨트롤러 적용
 //ver 42 - JSP 적용

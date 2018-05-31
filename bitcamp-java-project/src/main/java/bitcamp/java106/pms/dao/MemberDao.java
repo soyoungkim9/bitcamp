@@ -6,15 +6,15 @@ import java.util.Map;
 import bitcamp.java106.pms.domain.Member;
 
 public interface MemberDao {
-
-    public int delete(String id);
-    public List<Member> selectList();
-    public int insert(Member member);
-    public int update(Member member);
-    public Member selectOne(String id);
-    public Member selectOneWithPassword(Map<String,Object> params);
+    int delete(String id);
+    List<Member> selectList();
+    int insert(Member member);
+    int update(Member member);
+    Member selectOne(String id);
+    Member selectOneWithPassword(Map<String,Object> params);
 }
 
+//ver 50 - 클래스를 인터페이스로 변경
 //ver 41 - 로그인을 위한 selectOneWithPassword(id, password) 메서드 추가
 //ver 33 - Mybatis 적용
 //ver 32 - DB 커넥션 풀 적용

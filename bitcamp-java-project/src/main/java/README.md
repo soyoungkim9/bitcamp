@@ -1,7 +1,7 @@
 # 변경 내역
-- DispatcherServlet 추가
+- build.gradle 변경
+- DispatcherServlet 삭제
+- CharacterEncodingFilter 삭제
 - web.xml 변경
-- 모든 서블릿 클래스 변경
-- JSP 페이지의 모든 링크에 *.do 붙이기
- 
-
+- RequestMapping, RequestParam 애노테이션 삭제
+- 페이지 컨트롤러 변경

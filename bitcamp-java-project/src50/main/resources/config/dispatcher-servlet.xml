@@ -9,16 +9,16 @@
         http://www.springframework.org/schema/context/spring-context.xsd"
         >
     
-    <context:component-scan base-package="bitcamp.java106.pms.dao"></context:component-scan>
+    <context:component-scan base-package="bitcamp.java106.pms"></context:component-scan>
     
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource" />
 	
 	 <property name="mapperLocations"
-	 	 value="classpath*:bitcamp/java106/step12/pms/sql/*Mapper.xml" />
+	 	 value="classpath*:bitcamp/java106/pms/sql/*Mapper.xml" />
 
-    <property name="typeAliases" value="bitcamp.java106.pms.domain"/>
+    <property name="typeAliasesPackage" value="bitcamp.java106.pms.domain"/>
     
     </bean>
 	 

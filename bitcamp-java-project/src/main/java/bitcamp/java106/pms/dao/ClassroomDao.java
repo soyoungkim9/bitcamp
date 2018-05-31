@@ -5,15 +5,14 @@ import java.util.List;
 import bitcamp.java106.pms.domain.Classroom;
 
 public interface ClassroomDao {
-    
-    public int delete(int no);
-    public List<Classroom> selectList();
-    public Classroom selectOne(int no);
-    public int insert(Classroom classroom);
-    public int update(Classroom classroom);
-
+    int delete(int no);
+    List<Classroom> selectList();
+    Classroom selectOne(int no);
+    int insert(Classroom classroom);
+    int update(Classroom classroom);
 }
 
+//ver 50 - 클래스를 인터페이스로 변경
 //ver 33 - Mybatis 적용
 //ver 32 - DB 커넥션 풀 적용
 //ver 31 - JDBC API 적용
