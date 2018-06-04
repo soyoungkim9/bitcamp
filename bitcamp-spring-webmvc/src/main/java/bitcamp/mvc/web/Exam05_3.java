@@ -20,4 +20,24 @@ public class Exam05_3 {
         return String.format("m1(): no=%d, title=%s, conent=%s",
                 board.getNo(), board.getTitle(), board.getContent());
     }
+
+    // 객체로 받을 수 있는 것은 받고, 낱개로도 받을 수 있다.
+    @GetMapping(value="m2")
+    @ResponseBody 
+    public String m2(Board board, String writer) {
+        return String.format("m1(): no=%d, title=%s, conent=%s, writer=%s",
+                board.getNo(), 
+                board.getTitle(), 
+                board.getContent(),
+                writer);
+    }
+    
+    // 객체 안에 있는 객체 프로퍼티 값 설정하기
+    // 테스트:
+    // http://localhost:8888/bitcamp-spring-webmvc/mvc/exam05_3/m3?no=111&title=bbb&content=okok&user.id=hong&user.email=hong@test.com&user.password=1111
+    @GetMapping(value="m3")
+    @ResponseBody 
+    public String m3(Board board) {
+        return String.format("m3(): %s", board);
+    }
 }
