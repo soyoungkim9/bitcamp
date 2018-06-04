@@ -73,6 +73,7 @@ public class Exam05_4 {
                 new PropertyEditorSupport() {
                     @Override
                     public void setAsText(String text) throws IllegalArgumentException {
+                        System.out.println(text);
                         // 클라이언트가 csv 포맷으로 넘긴 회원 정보를
                         // Member 객체로 바꿀 수 있다.
                         // 예) hong.hong@test.com,1111
