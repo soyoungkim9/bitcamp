@@ -31,6 +31,19 @@ public class TeamMemberController {
         this.teamMemberDao = teamMemberDao;
     }
     
+    @RequestMapping("/form")
+    public void form(/*Model model*/) {
+        // 입력 폼에서 사용할 데이터가 있다면
+        // 이 request handler에서 준비하면 된다.
+        // model.addAttribute("프로퍼티명","값");
+        
+        // 요청 URL:
+        // http://localhost:8888/bitcamp-java-project/board/list.do
+        // 리턴할 view URL
+        // = prefix + request handler URL + suffix
+        // = "/WEB-INF/jsp/" + "" + ".jsp"
+    }
+    
     @RequestMapping("/add")
     public String add(
             @RequestParam("teamName") String teamName,
@@ -82,13 +95,12 @@ public class TeamMemberController {
     }
     
     @RequestMapping("/list")
-    public String list(
+    public void list(
             @RequestParam("name") String teamName,
             Map<String,Object> map) throws Exception {
        
         List<Member> members = teamMemberDao.selectListWithEmail(teamName);
         map.put("members", members);
-        return "/team/member/list.jsp";
     }
 }
 

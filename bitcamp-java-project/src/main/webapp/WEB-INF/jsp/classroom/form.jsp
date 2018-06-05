@@ -6,25 +6,27 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>강의 목록</title>
+<title>강의 등록</title>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
-<h1>강의 목록(MVC + JSP 전용 태그 + EL + JSTL)</h1>
-<p><a href='form.html'>새 강의</a></p>
+<jsp:include page="../header.jsp"/>
+<h1>강의 등록</h1>
+<form action='add.do' method='post'>
 <table border='1'>
 <tr>
-    <th>번호</th><th>강의명</th><th>기간</th><th>강의실</th>
+    <th>강의명</th><td><input type='text' name='title'></td>
 </tr>
-<c:forEach items="${list}" var="classroom">
 <tr>
-    <td>${classroom.no}</td>
-    <td><a href='view.do?no=${classroom.no}'>${classroom.title}</a></td>
-    <td>${classroom.startDate}~${classroom.endDate}</td>
-    <td>${classroom.room}</td>
+    <th>시작일</th><td><input type='date' name='startDate'></td>
 </tr>
-</c:forEach>
+<tr>
+    <th>종료일</th><td><input type='date' name='endDate'></td>
+</tr>
+<tr>
+    <th>강의실</th><td><input type='text' name='room'></td>
+</tr>
 </table>
-</body>
-</html>
+<button>등록</button>
+
+</form>
     
