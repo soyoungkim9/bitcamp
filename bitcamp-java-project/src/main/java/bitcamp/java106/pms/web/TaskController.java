@@ -92,7 +92,7 @@ public class TaskController {
     }
     
     @RequestMapping("/list")
-    public String list(
+    public void list(
             @RequestParam("teamName") String teamName,
             Map<String,Object> map) throws Exception {
         
@@ -102,7 +102,6 @@ public class TaskController {
         }
         List<Task> list = taskDao.selectList(team.getName());
         map.put("list", list);
-        return  "/task/list.jsp";
     }
     
     @RequestMapping("/update")
@@ -125,7 +124,7 @@ public class TaskController {
     }
     
     @RequestMapping("/view")
-    public String view(
+    public void view(
             @RequestParam("no") int no,
             Map<String,Object> map) throws Exception {
         
@@ -139,7 +138,6 @@ public class TaskController {
         
         map.put("task", task);
         map.put("members", members);
-        return "/task/view.jsp";
     }
     
     /*    @InitBinder
