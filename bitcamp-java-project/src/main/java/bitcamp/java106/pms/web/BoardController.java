@@ -20,6 +20,18 @@ public class BoardController {
         this.boardDao = boardDao;
     }
     
+    @RequestMapping("/form")
+    public void form(/*Model model*/) {
+        // 입력 폼에서 사용할 데이터가 있다면
+        // 이 request handler에서 준비하면 된다.
+        // model.addAttribute("프로퍼티명","값");
+        
+        // 요청 URL:
+        // http://localhost:8888/bitcamp-java-project/board/list.do
+        // 리턴할 view URL
+        // = prefix + request handler URL + suffix
+        // = "/WEB-INF/jsp/" + "" + ".jsp"
+    }
     @RequestMapping("/add")
     public String add(Board board) throws Exception {
         
@@ -38,11 +50,10 @@ public class BoardController {
     }
     
     @RequestMapping("/list")
-    public String list(Map<String,Object> map) throws Exception {        
+    public void list(Map<String,Object> map) throws Exception {        
             
         List<Board> list = boardDao.selectList();
         map.put("list", list);
-        return "/board/list.jsp";
     }
     
     @RequestMapping("/update")
@@ -56,7 +67,7 @@ public class BoardController {
     }
     
     @RequestMapping("/view")
-    public String view(
+    public void view(
             @RequestParam("no") int no, 
             Map<String,Object> map) throws Exception {
         
@@ -65,9 +76,7 @@ public class BoardController {
             throw new Exception("유효하지 않은 게시물 번호입니다.");
         }
         map.put("board", board);
-        return "/board/view.jsp";
     }
-
 }
 
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
