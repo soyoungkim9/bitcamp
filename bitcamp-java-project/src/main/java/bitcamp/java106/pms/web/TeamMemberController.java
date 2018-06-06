@@ -57,7 +57,7 @@ public class TeamMemberController {
         Member member = memberDao.selectOne(memberId);
         if (member == null) {
             map.put("message", "해당 회원이 없습니다!");
-            return "/team/member/fail.jsp";
+            return "team/member/fail";
         }
         
         HashMap<String,Object> params = new HashMap<>();
@@ -66,7 +66,7 @@ public class TeamMemberController {
         
         if (teamMemberDao.isExist(params)) {
             map.put("message", "이미 등록된 회원입니다.");
-            return "/team/member/fail.jsp";
+            return "team/member/fail";
         }
         teamMemberDao.insert(params);
         return "redirect:../view.do?name=" + 
@@ -86,7 +86,7 @@ public class TeamMemberController {
         int count = teamMemberDao.delete(params);
         if (count == 0) {
             map.put("message", "해당 회원이 없습니다!");
-            return "/team/member/fail.jsp";
+            return "team/member/fail";
         }
         return "redirect:../view.do?name=" + 
                 URLEncoder.encode(teamName, "UTF-8");

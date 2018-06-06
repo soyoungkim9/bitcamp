@@ -88,7 +88,7 @@ public class TaskController {
         }
         List<Member> members = teamMemberDao.selectListWithEmail(teamName);
         map.put("members", members);
-        return "/task/form.jsp";
+        return "task/form";
     }
     
     @RequestMapping("/list")
