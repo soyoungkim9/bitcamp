@@ -1,7 +1,6 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <h1>멤버 등록</h1>
-<form action="add.do" method="post">
+<form action="add" method="post">
 <table border='1'>
 <tr>
     <th>아이디</th><td><input type="text" name="id"></td>
@@ -29,5 +28,6 @@
 
 </body>
 </html>
+
 
     

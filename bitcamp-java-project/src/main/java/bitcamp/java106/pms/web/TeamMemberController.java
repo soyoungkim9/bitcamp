@@ -31,20 +31,7 @@ public class TeamMemberController {
         this.teamMemberDao = teamMemberDao;
     }
     
-    @RequestMapping("/form")
-    public void form(/*Model model*/) {
-        // 입력 폼에서 사용할 데이터가 있다면
-        // 이 request handler에서 준비하면 된다.
-        // model.addAttribute("프로퍼티명","값");
-        
-        // 요청 URL:
-        // http://localhost:8888/bitcamp-java-project/board/list.do
-        // 리턴할 view URL
-        // = prefix + request handler URL + suffix
-        // = "/WEB-INF/jsp/" + "" + ".jsp"
-    }
-    
-    @RequestMapping("/add")
+    @RequestMapping("add")
     public String add(
             @RequestParam("teamName") String teamName,
             @RequestParam("memberId") String memberId,
@@ -69,11 +56,11 @@ public class TeamMemberController {
             return "team/member/fail";
         }
         teamMemberDao.insert(params);
-        return "redirect:../view.do?name=" + 
+        return "redirect:../" + 
                 URLEncoder.encode(teamName, "UTF-8");
     }
     
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     public String delete(
             @RequestParam("teamName") String teamName,
             @RequestParam("memberId") String memberId,
@@ -88,13 +75,13 @@ public class TeamMemberController {
             map.put("message", "해당 회원이 없습니다!");
             return "team/member/fail";
         }
-        return "redirect:../view.do?name=" + 
+        return "redirect:../" + 
                 URLEncoder.encode(teamName, "UTF-8");
         // 개발자가 요청이나 응답헤더를 직접 작성하여 값을 주고 받으로 한다면,
         // URL 인코딩과 URL 디코딩을 손수 해 줘야 한다.
     }
     
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public void list(
             @RequestParam("name") String teamName,
             Map<String,Object> map) throws Exception {
@@ -104,6 +91,9 @@ public class TeamMemberController {
     }
 }
 
+//ver 52 - InternalResourceViewResolver 적용
+//         *.do 대신 /app/* 을 기준으로 URL 변경
+//ver 51 - Spring WebMVC 적용
 //ver 50 - DAO 변경에 맞춰 메서드 호출 변경
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
 //ver 48 - CRUD 기능을 한 클래스에 합치기

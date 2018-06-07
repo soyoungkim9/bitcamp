@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,23 +22,14 @@ public class ClassroomController {
     }
     
     @RequestMapping("/form")
-    public void form(/*Model model*/) {
-        // 입력 폼에서 사용할 데이터가 있다면
-        // 이 request handler에서 준비하면 된다.
-        // model.addAttribute("프로퍼티명","값");
-        
-        // 요청 URL:
-        // http://localhost:8888/bitcamp-java-project/board/list.do
-        // 리턴할 view URL
-        // = prefix + request handler URL + suffix
-        // = "/WEB-INF/jsp/" + "" + ".jsp"
+    public void form(){
     }
     
     @RequestMapping("/add")
     public String add(Classroom classroom) throws Exception {
         
         classroomDao.insert(classroom);
-        return "redirect:list.do";
+        return "redirect:list";
     }
     
     @RequestMapping("/delete")
@@ -47,7 +39,7 @@ public class ClassroomController {
         if (count == 0) {
             throw new Exception("<p>해당 강의가 없습니다.</p>");
         }
-        return "redirect:list.do";
+        return "redirect:list";
     }
     
     @RequestMapping("/list")
@@ -64,12 +56,12 @@ public class ClassroomController {
         if (count == 0) {
             throw new Exception("해당 강의가 존재하지 않습니다.");
         }
-        return "redirect:list.do";
+        return "redirect:list";
     }
     
-    @RequestMapping("/view")
-    public void view(
-            @RequestParam("no") int no, 
+    @RequestMapping("{no}")
+    public String view(
+            @PathVariable int no, 
             Map<String,Object> map) throws Exception {
      
         Classroom classroom = classroomDao.selectOne(no);
@@ -78,22 +70,28 @@ public class ClassroomController {
             throw new Exception("유효하지 않은 강의입니다.");
         }
         map.put("classroom", classroom);
+        return "classroom/view";
     }
     
-    // GlobalBindingInitializer에 등록했기 때문에 이 클래스에서는 제외한다.
-    /*@InitBinder
+    // GlobalBindingInitializer 에 등록했기 때문에 이 클래스에서는 제외한다.
+    /*
+    @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(
-                java.sql.Date.class,
+                java.sql.Date.class, 
                 new PropertyEditorSupport() {
                     @Override
                     public void setAsText(String text) throws IllegalArgumentException {
-                        setValue(java.sql.Date.valueOf(text));
+                        this.setValue(java.sql.Date.valueOf(text));
                     }
                 });
-    }*/
+    }
+    */
 }
 
+//ver 52 - InternalResourceViewResolver 적용
+//         *.do 대신 /app/* 을 기준으로 URL 변경
+//ver 51 - Spring WebMVC 적용
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
 //ver 48 - CRUD 기능을 한 클래스에 합치기
 //ver 47 - 애노테이션을 적용하여 요청 핸들러 다루기
