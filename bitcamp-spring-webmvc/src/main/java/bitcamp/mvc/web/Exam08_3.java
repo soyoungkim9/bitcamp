@@ -28,7 +28,7 @@ public class Exam08_3 {
         // => Model이나 Map객체에 데이터를 저장하면, JSP에서꺼내 쓸수 있도록
         //    프론트 컨트롤러가 ServletRequest 보관소로 복사한다.
         model.addAttribute("name", name);
-        return String.format("m1(): name=%s", name);
+        return String.format("m1(): 모델 객체를 통해서 세션에 값 넣기 - name=%s", name);
     }
 
     @GetMapping(value="m2", produces="text/plain;charset=UTF-8")
@@ -41,7 +41,7 @@ public class Exam08_3 {
         // => Model이나 Map객체에 데이터를 저장하면, JSP에서꺼내 쓸수 있도록
         //    프론트 컨트롤러가 ServletRequest 보관소로 복사한다.
         model.addAttribute("age", age);
-        return String.format("m2(): age=%s", age);
+        return String.format("m2(): 모델 객체를 통해서 세션에 값 넣기 - age=%s", age);
     }
 
     @GetMapping(value="m3", produces="text/plain;charset=UTF-8")
@@ -54,6 +54,6 @@ public class Exam08_3 {
         // => Model이나 Map객체에 데이터를 저장하면, JSP에서꺼내 쓸수 있도록
         //    프론트 컨트롤러가 ServletRequest 보관소로 복사한다.
         model.addAttribute("working", working);
-        return String.format("m3(): working=%s", working);
+        return String.format("m3(): 모델 객체를 통해서 세션에 값 넣기 - working=%s", working);
     }
 }
