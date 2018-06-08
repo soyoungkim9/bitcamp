@@ -45,7 +45,7 @@
     select tano, titl, sdt, edt, stat, mid, tnm 
     from pms2_task
     where tnm=#{teamName}
-    order by tano desc
+    order by sdt asc
     limit #{startRowNo}, #{pageSize}
   </select>
   
