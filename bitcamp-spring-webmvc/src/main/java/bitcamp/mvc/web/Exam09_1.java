@@ -21,13 +21,12 @@ public class Exam09_1 {
         return "exam09_1";
     }
     
+    // 인터셉터가 주입되지 않았다.
     @GetMapping(value="bbb/m3", produces="text/plain;charset=UTF-8")
     public String m3() {
         System.out.println("Exam09_1.m3()");
-        return "exam09_1";
+        return "exam09_1"; 
     }
-    
-   
 }
 
 
