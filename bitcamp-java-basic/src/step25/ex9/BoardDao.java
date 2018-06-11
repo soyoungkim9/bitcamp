@@ -4,7 +4,7 @@
 // => data 영속성(지속성(
 //    - 데이터를 저장하고 유지하는 것.
 //    - "데이터 퍼시스턴스(persistence)"라 부른다.
-package step25.ex8;
+package step25.ex9;
 
 import java.util.List;
 
