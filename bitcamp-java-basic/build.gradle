@@ -30,5 +30,8 @@ dependencies {
     // MySQl JDBC Driver  라이브러리
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
     
+    // Mariadb 라이브러리
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.2.5'
+    
     compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 }
