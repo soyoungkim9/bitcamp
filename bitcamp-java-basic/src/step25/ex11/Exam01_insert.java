@@ -1,4 +1,4 @@
-// mybatis + spring IoC - @Transactional 애노테이션으로 트랜잭션 적용    
+// mybatis + spring IoC - 트랜잭션 정책  
 package step25.ex11;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,27 +16,12 @@ public class Exam01_insert {
         //    => BoardService의 메서드에 @Transactional 애노테이션 붙인다.
         BoardService boardService = iocContainer.getBean(BoardService.class);
         
-        Board b1 = new Board();
-        b1.setNo(171);
-        b1.setTitle("11111");
-        b1.setContent("xxxx");
+        Board b1 = new Board().setNo(191).setTitle("11111").setContent("xxxx");
+        Board b2 = new Board().setNo(192).setTitle("11111").setContent("xxxx");
+        Board b3 = new Board().setNo(193).setTitle("11111").setContent("xxxx");
+        Board b4 = new Board().setNo(191).setTitle("11111").setContent("xxxx");
+        Board b5 = new Board().setNo(195).setTitle("11111").setContent("xxxx");
         
-        Board b2 = new Board();
-        b2.setNo(172);
-        b2.setTitle("22222");
-        
-        Board b3 = new Board();
-        b3.setNo(171);
-        b3.setTitle("33333");
-        
-        // test1()은 트랜잭션 매니저가 관리하기 때문에
-        // 실행 중에 오류가 발생하면 그 전에 실행했던 모든 결과를 취소(rollback)한다.
-        // 오류가 없어야만 commit 한다.
-        // boardService.test1(b1, b2, b3);
-        
-        // 그러나 test2()는 트랜잭션 매니저의 관리 대상이 아니기 때문에
-        // 실행 중에 오류가 발생하면 그 전까지 실행된 결과를 그대로 유지한다.
-        boardService.test2(b1, b2, b3);
-        System.out.println("입력 성공!");
+        boardService.test1(b1, b2, b3, b4, b5);
     }
 }
