@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	// body를 실행하기 전에 이 태그의 자바스크립트를 먼저 실행한다.
+	// script에 선언된 변수나 함수는 그 다음 script에서 사용할 수 있다.
+	var v1 = "hello";
+	function f1(str) {console.log(str);}
+	
+	// 그러나 아래 태그에서 정의한 변수나 함수는 위의 태그에서 사용할 수 없다.
+	// console.log(v2);
+	function f2{console.log(v2);}
+	
+	// 아직 v2라는 변수는 존재하지 않기 때문에 f2()를 실행하면 오류 발생;
+	// f2();
+</script>
+</body>
+<h1>script 태그에 선언도니 자바스크립트의 사용 범위</h1>
+<script>
+	// 이전 script 태그에서 정의한 모든 변수와 함수를 그대로 사용할 수 있다.
+	console.log(v1);
+	f1("안녕하세요!");
+	
+	var v2 = "반가워요!";
+	f2();
+</script>
+
+</html>
