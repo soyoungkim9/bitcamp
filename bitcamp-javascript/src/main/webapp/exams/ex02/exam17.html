@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex17</title>
+</head>
+<body>
+<h1>변수 - 배열크기와 length </h1>
+<script>
+"use strict"
+
+// 자바 스크립트의 배열은 자바의 ArrayList와 비슷하다.
+var arr = new Array(); // new
+
+// 단 자바의 ArrayList와 다른 점은 대괄호 []를 이용하여 배열 값을 넣을 수 있다.
+arr[0] = "aaa";
+arr[1] = "bbb";
+arr[2] = "ccc";
+arr[3] = "ddd";
+
+console.log(arr.length);
+console.log(arr);
+
+arr[7] = "eee";
+console.log(arr.length);
+console.log(arr);
+</script>
+</body>
+</html>
