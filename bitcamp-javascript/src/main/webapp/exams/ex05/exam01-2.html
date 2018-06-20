@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex05</title>
+</head>
+<body>
+<h1>DOM API - id값으로 태그 찾기</h1>
+<h1 id="header1" class="g1">제목1</h1>
+<h2 id="header2" class="g1">제목1.1</h2>
+<h2 id="header3" class="g1">제목1.2</h2>
+<h1 id="header4" class="g2">제목2</h1>
+<h2 id="header5" class="g2">제목2.1</h2>
+<h2 id="header6" class="g2">제목2.2</h2>
+<script>
+"use strict"
+
+var e1 = document.getElementsByTagName("h2");
+
+for (var i = 0; i < e1.length; i++) {
+	console.log(e1[i].innerHTML);
+}
+
+console.log("-----------------------");
+
+for(var i in e1) {
+	console.log(i, e1[i]);
+}
+
+console.log("-----------------------");
+
+// HTMLCollection은 iterable 규칙을 구현하였기 때문에
+// for...of 반복문을 사용할 수 있다.
+// => for (var 변수 of 배열 또는 iterable 구현체) {....}
+for(var e of e1) {
+	console.log(e);
+}
+</script>
+</body>
+</html>
+
+
+
+
+
