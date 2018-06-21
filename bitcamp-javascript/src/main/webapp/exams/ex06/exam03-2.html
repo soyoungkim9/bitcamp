@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex06</title>
+</head>
+<body>
+<h1>이벤트 - 이벤트 정보II</h1>
+<button id="btn1" data-no="100">버튼1</button><br>
+
+<script>
+"use strict"
+
+// arrow function인 경우
+// this는 window 객체를 가리킨다.
+//
+document.getElementById("btn1").addEventListener("click", (e) => {
+	console.log(this);
+	console.log(e.target);
+	console.log(e.target.getAttribute("data-no"));
+});
+</script>
+</body>
+</html>
+
+
+
+
+
