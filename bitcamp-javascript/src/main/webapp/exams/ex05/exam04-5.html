@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex05</title>
+</head>
+<body>
+<h1>DOM API - 태그의 속성(attribute) 추가하기</h1>
+<section>
+	<img src="../img01.PNG">
+	<img src="../img02.PNG">
+	<img src="../img03.PNG">
+	<img src="../img04.PNG">
+	<img src="../img05.PNG">
+</section>
+<script>
+"use strict"
+
+// 태그를 삭제하기
+//
+
+var parent = document.querySelector("section");
+
+window.setInterval(() => {
+	var img = document.querySelector("section > img:first-child");
+	
+	parent.appendChild(img);
+}, 2000);
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
