@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex07</title>
+</head>
+<body>
+<h1>AJAX - AJAX의 제약</h1>
+<button id="btn1">요청</button>
+<textarea id="ta" rows="10" cols="80"></textarea>
+
+
+<script>
+"use strict"
+
+// AJAX 요청의 제약
+// => HTML을 다운로드 받은 서버로만 AJAX로 HTTP 요청을 할 수 있다.
+// => 이유? 보안 떄문이다.
+//	  - 웹브라우저는 서버로부터 HTML을 다운로드 받으면 HTML에 들어있는 JavaScript를 자동으로 실행한다.
+//	  - HTML페이지는 반드시 신뢰할 수 있는 것은 아니다.
+//		페이지의 링크를 이리저리 따라가다 보면 임의의 사용자가 만든 페이지에 방문할 수 있고,
+//		그 사용자가 신뢰할 수 있는 사용자인지 알 수 없다.
+//	  - 이런 상황에서 누군가 게시글 속에 다른 사이트에 AJAX 요청을 하는 자바스크립트 코드를 넣었다고 가정해 보자
+//		그 게시글을 보는 사용자는 자신의 의도와 상관없이 특정 사이트에 대해 AJAX 요청을 할 것이다.
+//		이 요청이 동시에 많은 사람들에 의해 수행된다면 요청 받는 서버는 느려질 것이다.
+//		이것이 DDOS 공격이다.
+//	  - 즉 본인의의사와 상관없이 DDOS 공격에 차여자가 될수 있다.
+//	  - 이런 상황을 방지하고자 HTML을 보낸 서버로만 AJAX 요청을 하도록 제한하고 있다.
+var ta = document.querySelector("#ta");
+
+
+document.querySelector("#btn1").onclick = () => {
+	// 1) AJAX 객체 준비
+	var xhr = new XMLHttpRequest();
+	
+	// 2) 서버에 연결(동기 방식으로 요청)
+	// => 1번 파라미터: HTTP요청 method. ex) GET, POST, HEAD ...
+	// => 2번 파라미터 : URL
+	// => 3번 파라미터: 비동기 여부
+	xhr.open("GET", "http://www.zdnet.co.kr/news/news_view.asp?artice_id=20180622064949&lo=z38", false);
+	
+	// 3) 서버에 HTTP 요청을 보낸다.
+	// => 동기 방식으로 연결되었을 경우 서버에서 응답할 때까지 리턴하지 않는다.
+	xhr.send();
+	
+	// 4) 서버가 응답한 콘텐트를 꺼낸다.
+	ta.value = xhr.responseText;
+};
+
+</script>
+</body>
+</html>
+
+
+
+
+
