@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 정의</h1>
+<script>
+// 익명 함수를 정의하는 즉시 바로 호출할 수 있다.
+
+function f1() { // 파라미터가 없는 함수
+	console.log("안녕!");
+}
+
+function f2() { // 값을 리턴하는 함수
+	return "안녕2!";
+}
+
+function f3(a, b) { // 파라미터 있는 함수 
+	// 물론 파라미터도 로컬 변수이기 때문에 함수 호출이 끝나면 제거된다.
+	console.log(a, "+", b, "=", (a + b));
+}
+
+function f4(a, b) { // 파라미터도 있고, 리턴 값도 있는 함수
+	return a + b;
+}
+
+f1();
+console.log(f2());
+f3(10, 20);
+console.log(f4(10, 20));
+</script>
+</body>
+</html>
+
+
+
+
+
