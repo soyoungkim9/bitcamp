@@ -23,15 +23,23 @@ public class Exam10_2 {
         this.boardDao = boardDao;
     }
     
-    // 인터셉터가 주입되지 않았다.
     @GetMapping(value="list", produces="text/plain;charset=UTF-8")
     @ResponseBody
     public String list() {
         List<Board> boards = boardDao.selectList();
         
-        // JSP로 보내서 DAO가 리턴한 게시물 목록을 가지고 HTML을 만들게 한다.
+        // Gson 라이브러리를 이용하여 객체를 JSON 문자열로 변환한다.
         String json = new Gson().toJson(boards);
-        // 그렇게 만든 HTML은 웹브라우저로 보내져서 출력될 것이다.
-        return json; 
+        
+        // 그리고 그 JSON 문자열을 출력한다.
+        return json;
+    }
+    
+    // 인터셉터가 주입되지 않았다.
+    @GetMapping(value="list2")
+    @ResponseBody
+    public Object list2() {
+        List<Board> boards = boardDao.selectList();
+        return boards; 
     }
 }

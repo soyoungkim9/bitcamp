@@ -60,6 +60,8 @@ dependencies {
     // db 커넥션 풀 라이브러리
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
     
+    // compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
+    
     
     // 서블릿 라이브러리
     // => 어느 버전의 서블릿 규칙에 따라 만든 서버인지에 따라
