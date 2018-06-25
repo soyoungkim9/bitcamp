@@ -13,29 +13,11 @@
 <thead>
 	<tr><th>번호</th><th>제목</th><th>등록일</th></tr>
 </thead>
-<tbody id="tableBody"></tbody>
+<tbody></tbody>
 </table>
-<script src="../js/bitcamp.js"></script>
-<!-- <script src="../header.js"></script> -->
+<script src="../header.js"></script>
 <script>
-$.getJSON("../../json/board/list", {});
-	dataType: "json",
-	success(data) {
-		for (var item of data) {
-			var tr = document.createElement("tr");
-			tr.innerHTML = "<td>" + item.no + "</td>" +
-			"<td><a href='form.html?no=" + item.no + "'>" + item.title + "</a></td>" +
-			"<td>" + item.createdDate + "</td>";
-			tableBody.appendChild(tr); 
-		}
-	},
-	error() {
-		window.alert("실행 오류!");
-	}
-});
-
-
-/* var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
 xhr.open("GET", "../../html/header.html", false); // 동기 방식으로 요청한다.
 xhr.send();
 header.innerHTML = xhr.responseText; // 서버로부터 받은
@@ -58,7 +40,7 @@ xhr.onreadystatechange = () => {
 	}
 };
 xhr.open("GET", "../../json/board/list", true);
-xhr.send(); */
+xhr.send();
 </script>
 </body>
 </html>
