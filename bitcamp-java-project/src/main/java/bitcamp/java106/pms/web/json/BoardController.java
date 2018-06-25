@@ -41,7 +41,6 @@ public class BoardController {
     public Object list(
             @MatrixVariable(defaultValue="1") int pageNo,
             @MatrixVariable(defaultValue="3") int pageSize) {        
-        
         return boardService.list(pageNo, pageSize);
     }
     
