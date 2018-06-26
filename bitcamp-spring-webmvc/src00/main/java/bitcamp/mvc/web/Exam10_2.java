@@ -1,4 +1,4 @@
-// 인터셉터 - 페이지 컨트롤러를 실행하기 전후에 개입하기. 필터와 같은 역할을 한다.
+// JSON 데이터 출력하기 - Gson 라이브러리로 JSON 데이터 출력하기 
 package bitcamp.mvc.web;
 
 import java.util.List;
@@ -35,11 +35,20 @@ public class Exam10_2 {
         return json;
     }
     
-    // 인터셉터가 주입되지 않았다.
     @GetMapping(value="list2")
     @ResponseBody
     public Object list2() {
         List<Board> boards = boardDao.selectList();
-        return boards; 
+        // 요청 핸들러의 리턴 값이 @ResponseBody일 경우,
+        // 일반 객체를 리턴하면 
+        // 스프링에서 자동으로 JSON으로 바꿔 응답한다.
+        return boards;
     }
 }
+
+
+
+
+
+
+
