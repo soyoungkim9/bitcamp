@@ -1,3 +1,4 @@
+// 자바스크립트 함수를 모아 놓은 라이브러리
 var bitcamp = new Object();
 
 bitcamp.ajax = (url, settings) => {
@@ -47,26 +48,35 @@ bitcamp.ajax = (url, settings) => {
 };
 
 bitcamp.getJSON = (url, p1, p2) => {
-	if(p1 == undefined || typeof p1 != "function") {
+	// 호출 예:
+	if (p1 == undefined || typeof p1 != "function") {
+		// => getJSON("board/list");
+		// => getJSON("board/list", {pageNo:1,pageSize:5});
+		// => getJSON("board/list", {pageNo:1,pageSize:5}, function(data) {...});
+	    bitcamp.ajax(url, {
+	    	"data": p1,
+	    	"dataType": "json",
+	    	"success": p2
+	    });
+	} else if (typeof p1 == "function") {
+		// => getJSON("board/list", function() {});
 		bitcamp.ajax(url, {
-			"data": p1,
 			"dataType": "json",
-			"success": p2
-		});
-	} else if(typeof p1 == "function") {
-		bitcamp.ajax(url, {
-			"success":p1
-		});
-	  }
-	};
-	
-	
-	if(typeof data != "function")
-	bitcamp.ajax(url, {
-		"data": data,
-		"dataType": "json",
-		"success": success
-	})
+	    	"success": p1
+	    });
+	}
 };
 
-var $  = bitcamp;
+var $ = bitcamp;
+
+
+
+
+
+
+
+
+
+
+
+

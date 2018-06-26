@@ -86,25 +86,4 @@ public class AuthController {
     }
 }
 
-//               [웹브라우저]                                  [웹서버] 
-// GET 요청: /java106-java-project/auth/login ===>
-//                                                       <=== 응답: 로그인폼 
-// POST 요청: /java106-java-project/auth/login ===>
-//                                                       <=== 응답: redirect URL
-// GET 요청: /java106-java-project ===> 
-//                                                       <=== 응답: index.html
-// 메인화면 출력!
-
-//ver 51 - redirect URL 변경
-//ver 50 - DAO 변경에 따른 메서드 호출 변경
-//ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
-//ver 48 - CRUD 기능을 한 클래스에 합치기
-//ver 47 - 애노테이션을 적용하여 요청 핸들러 다루기
-//ver 46 - 페이지 컨트롤러를 POJO를 변경
-//ver 45 - 프론트 컨트롤러 적용
-//ver 42 - JSP 적용
-//ver 41 - 클래스 추가
-
-
-
-
+//ver 55 - JSON 데이터를 출력하는 페이지 컨트롤러 생성
