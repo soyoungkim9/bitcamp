@@ -5,36 +5,29 @@
 <title>ex07</title>
 </head>
 <body>
-<h1>AJAX - AJAX의 제약</h1>
-<button id="btn1">요청</button>
-<textarea id="ta" rows="10" cols="80"></textarea>
-
+<h1>AJAX - AJAX의 제약 해소</h1>
+<button id="btn1">요청</button><br>
+<textarea id="ta" cols="80" rows="10"></textarea>
 
 <script>
 "use strict"
 
-// AJAX 요청에 대해 응답을
+// AJAX 요청에 대해 응답을 하는 서버 쪽에서 다음과 같은 응답 헤더를 포함한다면 
+// 웹브라우저는 응답결과를 리턴해 줄 것이다.
+//      Access-Control-Allow-Origin: 허락할 도메인
 //
-//
+// 버튼을 클릭할 때 서버에 HTTP 요청하여 응답 결과를 textarea 태그에 출력한다.
 var ta = document.querySelector("#ta");
 
 document.querySelector("#btn1").onclick = () => {
-	// 1) AJAX 객체 준비
-	var xhr = new XMLHttpRequest();
-	
-	// 2) 서버에 연결(동기 방식으로 요청)
-	// => 1번 파라미터: HTTP요청 method. ex) GET, POST, HEAD ...
-	// => 2번 파라미터 : URL
-	// => 3번 파라미터: 비동기 여부
-	xhr.open("GET", "http://192.168.0.42:8888/bitcamp-javascript/jsp/test1.jsp", false);
-	
-	// 3) 서버에 HTTP 요청을 보낸다.
-	// => 동기 방식으로 연결되었을 경우 서버에서 응답할 때까지 리턴하지 않는다.
-	xhr.send();
-	
-	// 4) 서버가 응답한 콘텐트를 꺼낸다.
-	ta.value = xhr.responseText;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://192.168.0.5:8888/bitcamp-javascript/jsp/test1.jsp", false);
+    xhr.send();
+    ta.value = xhr.responseText;
 };
+
+
+
 
 </script>
 </body>
