@@ -38,7 +38,7 @@ $("#loginBtn").click(() => {
 	if ($(document.body).is("#fSaveId:checked")) {
 		data.saveId = "true";
 	}
-	$.post("../../json/auth/login", data, (result) => {
+	$.post(serverRoot + "/json/auth/login", data, (result) => {
 		if (result.state == "success")
 			location.href = "../board/list.html";
 		else 
