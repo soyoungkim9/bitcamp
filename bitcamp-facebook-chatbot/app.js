@@ -167,6 +167,13 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Thanks!" }
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
+  } else if (payload === 'menu01') {
+	  response = { "text": "치맥!!" }
+  } else if (payload === 'menu02') {
+	  response = { "text": "불소!!" }
+  } else if (payload === 'menu03') {
+	  response = { "text": "부막!!" }
+	  
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
