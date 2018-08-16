@@ -1,1 +1,1 @@
-var serverRoot = "http://www.youngweb.xyz:8888/bitcamp-java-project";
+var serverRoot = "http://www.youngweb.xyz:8888/pms";
